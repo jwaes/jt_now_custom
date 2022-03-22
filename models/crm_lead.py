@@ -15,7 +15,37 @@ class CrmLead(models.Model):
         if not self.partner_id:
             return self.env["ir.actions.actions"]._for_xml_id("sale_crm.crm_quotation_partner_action")
         else:
-            action = self.action_new_quotation()
+            sale_order_vals = {
+                'name': self.env['ir.sequence'].next_by_code('sale.order'),
+                'partner_id': self.partner_id.id,
+                'source_id': self.source_id.id,
+                'opportunity_id': self.id,
+                'tag_ids': [(6, 0, self.tag_ids.ids)],
+                'company_id': self.company_id.id or self.env.company.id,
+                'campaign_id': self.campaign_id.id,
+                'origin': self.name,
+            }
+            sale_order = self.env["sale.order"].create(sale_order_vals)
+
             for task in self.task_ids:
-                _logger.info("task thingy")            
-            return action
+                product = task.product_id
+                if product:
+                    order_line_vals = {
+                        'name': product.display_name,
+                        'order_id': sale_order.id,
+                        "product_id": product.id,
+                        "product_uom_qty": 1.0,
+                    }
+                    order_line = self.env["sale.order.line"].create(order_line_vals)
+
+            view = self.env.ref("sale.view_order_form")
+
+            return {
+                "name": "New Quotation",
+                "view_mode": "form",
+                "view_id": view.id,
+                "res_model": "sale.order",
+                "type": "ir.actions.act_window",
+                "res_id": sale_order.id,
+                "context": self.env.context,
+            }                

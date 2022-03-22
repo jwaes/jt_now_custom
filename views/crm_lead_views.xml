@@ -23,8 +23,8 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
-                <button string="New Quot" name="action_sale_quotations_newer" type="object" 
-                attrs="{'invisible': ['|', ('type', '=', 'lead'), '&amp;', ('probability', '=', 0), ('active', '=', False)]}"/>
+                <button string="New Quotation with products" name="action_sale_quotations_newer" type="object" 
+                attrs="{'invisible': ['|', ('type', '=', 'lead'), ('task_count', '=', 0), '&amp;', ('probability', '=', 0), ('active', '=', False)]}"/>
             </xpath>
         </field>
     </record>
