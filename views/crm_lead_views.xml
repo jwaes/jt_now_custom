@@ -17,6 +17,18 @@
         </field>
     </record>
 
+    <record id="crm_case_form_view_opportt" model="ir.ui.view">
+        <field name="name">crm.lead.oppor.inherited.crmtt</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="New Quot" name="action_sale_quotations_newer" type="object" 
+                attrs="{'invisible': ['|', ('type', '=', 'lead'), '&amp;', ('probability', '=', 0), ('active', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="crm_lead_view_form" model="ir.ui.view">
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form" />
@@ -24,7 +36,7 @@
             <field name="tag_ids" position="after">
                 <field name="client_ref" />
                 <field name="pafin_ref" />
-            </field>
+            </field>        
         </field>
     </record>
 
