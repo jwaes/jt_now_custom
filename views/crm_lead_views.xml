@@ -55,7 +55,7 @@
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
         <field name="model">crm.lead</field>
         <field name="arch" type="xml">
-            <xpath expr="//div[@class='o_kanban_record_subtitle'][last()]/following-sibling::div" position="after">
+            <xpath expr="//div[hasclass('o_kanban_record_subtitle')][last()]/following-sibling::div" position="after">
                 <t t-if="record.client_ref">
                     <div>
                         <field name="client_ref" />
