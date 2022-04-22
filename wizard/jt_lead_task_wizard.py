@@ -14,6 +14,10 @@ class CrmLeadTaskWizard(models.TransientModel):
             _logger.info("found a otf bom template")
             bom = task.project_id.otf_bom_template_id.create_otf_bom_product()
             product = bom.product_id
+            if task.partner_id.parent_id:
+                product.partner_id = task.partner_id.parent_id
+            else :
+                product.partner_id = task.partner_id
             product.product_wdh = True
             task.product_id = product
             product.task_id = task
