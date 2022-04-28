@@ -27,15 +27,23 @@ class CrmLead(models.Model):
             }
             sale_order = self.env["sale.order"].create(sale_order_vals)
 
+            dropship_route = self.env['stock.location.route'].search([('name', '=', 'Dropship')])
+
             for task in self.task_ids:
                 product = task.product_id
-                if product:
+                if product is not None:
                     order_line_vals = {
                         'name': product.display_name,
                         'order_id': sale_order.id,
-                        "product_id": product.id,
-                        "product_uom_qty": 1.0,
+                        'product_id': product.id,
+                        'product_uom_qty': 1.0,
                     }
+
+                    otf_bom_template = product.otf_bom_template
+                    if otf_bom_template is not None and dropship_route is not None:
+                        if otf_bom_template.dropship:
+                            order_line_vals['route_id'] = dropship_route.id
+
                     order_line = self.env["sale.order.line"].create(order_line_vals)
 
             view = self.env.ref("sale.view_order_form")
