@@ -3,7 +3,7 @@ from odoo import api, fields, models
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    week_planned = fields.Integer(compute='_compute_week_planned', tracking=True)
+    week_planned = fields.Integer(compute='_compute_week_planned')
     
     @api.depends('date_planned')
     def _compute_week_planned(self):
