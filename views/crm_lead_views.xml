@@ -24,7 +24,7 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button string="New Quotation with products" name="action_sale_quotations_newer" type="object" 
-                attrs="{'invisible': ['|', ('type', '=', 'lead'), ('task_count', '=', 0), '&amp;', ('probability', '=', 0), ('active', '=', False)]}"/>
+                attrs="{'invisible': [('task_ready', '=', False)]}"/>
             </xpath>
         </field>
     </record>
