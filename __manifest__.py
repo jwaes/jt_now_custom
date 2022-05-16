@@ -26,9 +26,16 @@
         "report/purchase_order_templates.xml",
         "views/crm_lead_views.xml",
         "views/res_partner_views.xml",
+        "views/stock_picking_views.xml",
         "views/product_view.xml",
     ],
     # only loaded in demonstration mode
     'demo': [
     ],
+
+    'assets': {
+        'web._assets_primary_variables': [
+            'jt_now_custom/static/src/legacy/scss/primary_variables.scss',
+        ],
+    },
 }
