@@ -17,7 +17,7 @@
     'version': '15.0.1.0.12',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','crm','project','purchase','sale_purchase','jt_mrp_otf','jt_lead_task'],
+    'depends': ['base','sale_management','crm','project','purchase','sale_purchase','jt_mrp_otf','jt_lead_task'],
 
     # always loaded
     'data': [
@@ -28,6 +28,7 @@
         "views/res_partner_views.xml",
         "views/stock_picking_views.xml",
         "views/product_view.xml",
+        "views/webclient_templates.xml",
     ],
     # only loaded in demonstration mode
     'demo': [
