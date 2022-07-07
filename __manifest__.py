@@ -14,7 +14,7 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.15',
+    'version': '1.16',
 
     # any module necessary for this one to work correctly
     'depends': [
@@ -42,6 +42,7 @@
         "views/stock_picking_views.xml",
         "views/product_view.xml",
         "views/webclient_templates.xml",
+        "views/website_sale.xml",
     ],
     # only loaded in demonstration mode
     'demo': [

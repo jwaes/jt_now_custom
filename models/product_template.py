@@ -3,6 +3,9 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
+
+    
+
     # Define all the related fields in product.template with 'readonly=False'
     # to be able to modify the values from product.template.
     dimensional_uom_id = fields.Many2one(
