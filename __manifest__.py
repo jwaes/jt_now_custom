@@ -14,11 +14,12 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.16',
+    'version': '1.21',
 
     # any module necessary for this one to work correctly
     'depends': [
         'base',
+        'web_editor',
         'website_sale_stock',
         'sale_management',
         'crm',
@@ -35,6 +36,8 @@
         "report/purchase_quotation_templates.xml",
         "report/purchase_order_templates.xml",
         "report/sale_report_templates.xml",
+        'views/snippets/s_video_plyr.xml',
+        'views/snippets/snippets.xml',
         "views/crm_lead_views.xml",
         "views/ir_qweb_widget_templates.xml",
         "views/portal_templates.xml",
@@ -55,5 +58,8 @@
         'web.assets_qweb': [
             'jt_now_custom/static/src/xml/*.xml',
         ],
+        'website.assets_wysiwyg': [
+            'jt_now_custom/static/src/snippets/s_video_plyr/options.js',
+        ],        
     },
 }
