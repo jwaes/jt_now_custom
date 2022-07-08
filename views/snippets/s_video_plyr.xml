@@ -20,11 +20,11 @@
     <template id="s_video_plyr_option" inherit_id="website.snippet_options">
         <xpath expr="." position="inside">
             <div data-js="Plyrdata" data-selector="section.s_video_plyr">
-                <div class="mt-2">540p :</div>
+                <div class="mt-2">source 540p :</div>
                 <we-input class="o_we_large" data-video-src540="" data-no-preview="true"/>
-                <div class="mt-2">720p :</div>
+                <div class="mt-2">source 720p :</div>
                 <we-input class="o_we_large" data-video-src720="" data-no-preview="true"/>
-                <div class="mt-2">1080p :</div>
+                <div class="mt-2">source 1080p :</div>
                 <we-input class="o_we_large" data-video-src1080="" data-no-preview="true"/>
             </div>
         </xpath>
