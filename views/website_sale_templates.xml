@@ -12,7 +12,7 @@
             <!-- personlised products -->
             <div class="alert alert-warning" role="alert">
                 This product is personalized for you and therefore it cannot be returned.
-                <a href="#">Read more</a>
+                <a href="/faq#Personalized-products">Faq</a>
             </div>
 
             <div class="alert alert-info" role="alert">
@@ -47,7 +47,7 @@
             <t t-if="line.product_id.is_stock_product != True">
                 <div t-attf-class="p-1 mt-2 text-muted {{div_class}} small alert alert-warning" role="alert">
                     This product is personalized and therefore it cannot be returned.
-                    <a href="#">Read more</a>
+                    <a href="/faq#Personalized-products">Faq</a>
                 </div>
             </t>
         </xpath>
