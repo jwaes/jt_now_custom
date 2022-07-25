@@ -27,4 +27,3 @@ class ProductTemplate(models.Model):
     product_wdh = fields.Boolean(
         related="product_variant_ids.product_wdh", readonly=False
     )
- 

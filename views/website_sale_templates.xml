@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="website_sale_product" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="after">
+            <div class="product_stockinfo o_not_editable mt-3" style="display:none;" />
+        </xpath>
+    </template>
+
+    <template id="website_sale_product_stockinfo">
+        <t t-if="product_variant.is_stock_product != True">
+            <!-- personlised products -->
+            <div class="alert alert-warning" role="alert">
+                This product is personalized for you and therefore it cannot be returned.
+                <a href="#">Read more</a>
+            </div>
+
+            <div class="alert alert-info" role="alert">
+                The product usually ships in
+                <t t-if="product_variant.free_qty &gt; 0">
+                    <t t-esc="product_variant.lead_time_in_stock" />
+                </t>
+                <t t-else="">
+                    <t t-esc="product_variant.lead_time_out_stock" />
+                </t>
+            </div>
+        </t>
+        <t t-else="">
+            <!--stock products -->
+            <t t-if="product_variant.free_qty &gt; 0">
+                <div class="alert alert-success mdi mdi-alert mdi-truck-fast-outline" role="alert">
+                    This product usually ships from our warehouse in
+                    <t t-esc="product_variant.lead_time_in_stock" />
+                </div>
+            </t>
+            <t t-else="">
+                <div class="alert alert-info" role="alert">
+                    This product is being produced, we expect it to ship in
+                    <t t-esc="product_variant.lead_time_out_stock" />
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="cart_line_description_following_lines" inherit_id="website_sale.cart_line_description_following_lines">
+        <xpath expr="//div" position="after">
+            <t t-if="line.product_id.is_stock_product != True">
+                <div t-attf-class="p-1 mt-2 text-muted {{div_class}} small alert alert-warning" role="alert">
+                    This product is personalized and therefore it cannot be returned.
+                    <a href="#">Read more</a>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

@@ -14,7 +14,7 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.21',
+    'version': '1.28',
 
     # any module necessary for this one to work correctly
     'depends': [
@@ -28,6 +28,7 @@
         'sale_purchase',
         'jt_mrp_otf',
         'jt_lead_task',
+        'jt_product_properties',
         ],
 
     # always loaded
@@ -46,6 +47,7 @@
         "views/product_view.xml",
         "views/webclient_templates.xml",
         "views/website_sale.xml",
+        "views/website_sale_templates.xml",
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -55,6 +57,9 @@
         'web._assets_primary_variables': [
             'jt_now_custom/static/src/legacy/scss/primary_variables.scss',
         ],
+        'web.assets_frontend': [
+            'jt_now_custom/static/src/js/**/*',
+        ],        
         'web.assets_qweb': [
             'jt_now_custom/static/src/xml/*.xml',
         ],
