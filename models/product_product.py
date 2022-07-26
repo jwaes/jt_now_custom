@@ -17,8 +17,11 @@ class ProductProduct(models.Model):
 
     is_stock_product = fields.Boolean(compute='_compute_is_stock_product', string='Is stock product')
 
+    
     lead_time_in_stock = fields.Char(compute='_compute_lead_time_in_stock', string='Lead time in stock')
     lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='lead_time_out_stock')
+
+
     
     @api.depends('all_kvs')
     def _compute_lead_time_in_stock(self):

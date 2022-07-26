@@ -8,36 +8,39 @@
     </template>
 
     <template id="website_sale_product_stockinfo">
-        <t t-if="product_variant.is_stock_product != True">
-            <!-- personlised products -->
-            <div class="alert alert-warning" role="alert">
-                This product is personalized for you and therefore it cannot be returned.
-                <a href="/faq#Personalized-products">Faq</a>
-            </div>
+        <t t-if="not product_variant.is_dealer_product">
+            <!-- website product -->
+            <t t-if="not product_variant.is_stock_product">
+                <!-- personlised products -->
+                <div class="alert alert-warning mdi mdi-alert mdi-palette-swatch-variant" role="alert">
+                    This product is personalized for you and therefore it cannot be returned.
+                    <a href="/faq#Personalized-products">Faq</a>
+                </div>
 
-            <div class="alert alert-info" role="alert">
-                The product usually ships in
-                <t t-if="product_variant.free_qty &gt; 0">
-                    <t t-esc="product_variant.lead_time_in_stock" />
-                </t>
-                <t t-else="">
-                    <t t-esc="product_variant.lead_time_out_stock" />
-                </t>
-            </div>
-        </t>
-        <t t-else="">
-            <!--stock products -->
-            <t t-if="product_variant.free_qty &gt; 0">
-                <div class="alert alert-success mdi mdi-alert mdi-truck-fast-outline" role="alert">
-                    This product usually ships from our warehouse in
-                    <t t-esc="product_variant.lead_time_in_stock" />
+                <div class="alert alert-info mdi mdi-alert mdi-truck-delivery-outline" role="alert">
+                    This product usually ships in
+                    <t t-if="product_variant.free_qty &gt; 0">
+                        <t t-esc="product_variant.lead_time_in_stock" />
+                    </t>
+                    <t t-else="">
+                        <t t-esc="product_variant.lead_time_out_stock" />
+                    </t>
                 </div>
             </t>
             <t t-else="">
-                <div class="alert alert-info" role="alert">
-                    This product is being produced, we expect it to ship in
-                    <t t-esc="product_variant.lead_time_out_stock" />
-                </div>
+                <!--stock products -->
+                <t t-if="product_variant.free_qty &gt; 0">
+                    <div class="alert alert-success mdi mdi-alert mdi-truck-fast-outline" role="alert">
+                        This product usually ships from our warehouse in
+                        <t t-esc="product_variant.lead_time_in_stock" />
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="alert alert-info mdi mdi-alert mdi-truck-delivery-outline" role="alert">
+                        This product is being produced, we expect it to ship in
+                        <t t-esc="product_variant.lead_time_out_stock" />
+                    </div>
+                </t>
             </t>
         </t>
     </template>
@@ -47,7 +50,7 @@
             <t t-if="line.product_id.is_stock_product != True">
                 <div t-attf-class="p-1 mt-2 text-muted {{div_class}} small alert alert-warning" role="alert">
                     This product is personalized and therefore it cannot be returned.
-                    <a href="/faq#Personalized-products">Faq</a>
+                    <a href="/faq#Personalized-products">Read more</a>
                 </div>
             </t>
         </xpath>
