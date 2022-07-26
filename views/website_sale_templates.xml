@@ -14,7 +14,7 @@
                 <!-- personlised products -->
                 <div class="alert alert-warning mdi mdi-alert mdi-palette-swatch-variant" role="alert">
                     This product is personalized for you and therefore it cannot be returned.
-                    <a href="/faq#Personalized-products">Faq</a>
+                    <a href="/faq#Personalized-products">Read more</a>
                 </div>
 
                 <div class="alert alert-info mdi mdi-alert mdi-truck-delivery-outline" role="alert">
@@ -48,8 +48,8 @@
     <template id="cart_line_description_following_lines" inherit_id="website_sale.cart_line_description_following_lines">
         <xpath expr="//div" position="after">
             <t t-if="line.product_id.is_stock_product != True">
-                <div t-attf-class="p-1 mt-2 text-muted {{div_class}} small alert alert-warning" role="alert">
-                    This product is personalized and therefore it cannot be returned.
+                <div t-attf-class="mt-1 p-1 pl-3 text-muted {{div_class}} small alert alert-warning mdi mdi-alert mdi-palette-swatch-variant" role="alert">
+                    This product is personalized and cannot be returned.
                     <a href="/faq#Personalized-products">Read more</a>
                 </div>
             </t>
