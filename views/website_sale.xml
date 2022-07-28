@@ -26,7 +26,6 @@
                 <p class="alert alert-info mdi mdi-alert mdi-storefront-outline">This product is available through our <a href="/retailers">retailers</a>.</p>                
             </div>
         </xpath>
-        <!-- <xpath expr="//div[hasclass('products_header')]" position="replace"/> -->
         <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/>
     </template>
 
@@ -72,16 +71,10 @@
         </xpath>
 
     </template>
+
     <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
         <xpath expr="//div" position="replace"/>
     </template>
 
-
-    <!-- portrait images in overview -->
-    <template id="products_item" inherit_id="website_sale.products_item">
-        <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
-            <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>
-        </xpath>
-    </template>
 
 </odoo>

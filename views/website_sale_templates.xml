@@ -59,6 +59,9 @@
     <!-- remove the price from the overview -->
     <template id="products_item"  inherit_id="website_sale.products_item">
         <xpath expr="//div[hasclass('product_price')]" position="replace"/>
+        <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
+            <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>
+        </xpath>        
     </template>
 
     <template id="products" inherit_id="website_sale.products">
