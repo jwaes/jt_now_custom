@@ -56,4 +56,9 @@
         </xpath>
     </template>
 
+    <!-- remove the price from the overview -->
+    <template id="products_item"  inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('product_price')]" position="replace"/>
+    </template>
+
 </odoo>
