@@ -26,6 +26,8 @@
                 <p class="alert alert-info mdi mdi-alert mdi-storefront-outline">This product is available through our <a href="/retailers">retailers</a>.</p>                
             </div>
         </xpath>
+        <!-- <xpath expr="//div[hasclass('products_header')]" position="replace"/> -->
+        <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/>
     </template>
 
     <template id="product_quantity"  inherit_id="website_sale.product_quantity">
