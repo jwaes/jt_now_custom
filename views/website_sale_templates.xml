@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="website_sale_product" inherit_id="website_sale.product">
+    <template id="website_sale_product" inherit_id="jt_product_properties_website.website_sale_product">
+        <xpath expr="//div[hasclass('card')]" position="after">
+            <t t-if="product_variant.product_wdh">
+            <div class="card bg-white" data-name="Item">
+                <a href="#" t-attf-data-target="#myCollapseTab{{uniq}}_dim" role="tab" data-toggle="collapse" aria-expanded="false" class="collapsed card-header s_faq_collapse_right_icon">Dimensions</a>
+                <div t-attf-id="myCollapseTab{{uniq}}_dim" class="collapse" data-parent="#myCollapse" role="tabpanel">
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tortor risus, rutrum non est non, pellentesque suscipit tellus. Sed consectetur purus et libero sagittis, a aliquet nibh pulvinar. Fusce et molestie dui. Nulla hendrerit eu augue nec convallis. </p>
+                    </div>
+                </div>
+            </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="website_sale_product_dimensions" inherit_id="website_sale.product">
         <xpath expr="//div[@id='add_to_cart_wrap']" position="after">
             <div class="product_stockinfo o_not_editable mt-3" style="display:none;" />
         </xpath>
-    </template>
+    </template>    
 
     <template id="website_sale_product_stockinfo">
         <t t-if="not product_variant.is_dealer_product">
@@ -58,7 +73,9 @@
 
     <!-- remove the price from the overview -->
     <template id="products_item"  inherit_id="website_sale.products_item">
-        <xpath expr="//div[hasclass('product_price')]" position="replace"/>
+        <xpath expr="//div[hasclass('product_price')]" position="attributes">
+            <attribute name="style">display:none;</attribute>
+        </xpath>
         <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
             <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>
         </xpath>        
