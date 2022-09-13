@@ -1,5 +1,7 @@
 from odoo import api, models
 
+from odoo.http import request
+
 class Http(models.AbstractModel):
     _inherit = 'ir.http'
 
