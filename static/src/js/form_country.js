@@ -9,7 +9,7 @@ $(document ).ready(function() {
         console.log("select is there");
         console.log(slct);
 
-        if (session.geoip){
+        if (session.geoip_country_name){
             console.log("country name is " + session.geoip_country_name);
 
             $('select[name=country_id].s_website_form_input option').filter(function(){
@@ -18,7 +18,7 @@ $(document ).ready(function() {
             }).prop('selected',true);
 
         } else {
-            console.log("no geoip found");
+            console.log("no geoip_country_name found");
         }
 
     } else {
