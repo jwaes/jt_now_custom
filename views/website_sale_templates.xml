@@ -81,8 +81,8 @@
         </xpath>        
     </template>
 
-    <template id="products" inherit_id="website_sale.products">
+    <!-- <template id="products" inherit_id="website_sale.products">
         <xpath expr="//div[hasclass('products_header')]//t[@t-call='website_sale.search']" position="replace"/>
-    </template>
+    </template> -->
 
 </odoo>

@@ -24,6 +24,7 @@ class CrmLead(models.Model):
                 'company_id': self.company_id.id or self.env.company.id,
                 'campaign_id': self.campaign_id.id,
                 'origin': self.name,
+                'client_order_ref': self.client_ref,
             }
             sale_order = self.env["sale.order"].create(sale_order_vals)
 
@@ -56,4 +57,11 @@ class CrmLead(models.Model):
                 "type": "ir.actions.act_window",
                 "res_id": sale_order.id,
                 "context": self.env.context,
-            }                
+            }        
+
+    def action_new_quotation(self):
+        action = super(CrmLead, self).action_new_quotation()
+        action['context'].update({
+            'default_client_order_ref': self.client_ref,
+        })
+        return action
