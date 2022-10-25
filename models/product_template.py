@@ -4,8 +4,36 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
+    product_wdh = fields.Boolean("wdh", default=False)
+    product_width = fields.Float("width")
+    product_depth = fields.Float("depth")
+    product_height = fields.Float("height")
+    product_packaging_width = fields.Float("packaging width")
+    product_packaging_depth = fields.Float("packaging depth")
+    product_packaging_height = fields.Float("packaging height")
+    dimensional_uom_id = fields.Many2one(
+        "uom.uom",
+        "Dimensional UoM",
+        domain=lambda self: self._get_dimension_uom_domain(),
+        help="UoM for width, depth, height",
+        default=lambda self: self.env.ref("uom.product_uom_millimeter"),
+    )
+    product_weight = fields.Float("weight")
+    product_packaging_weight = fields.Float("packaging weight")
+    weight_uom_id = fields.Many2one(
+        "uom.uom",
+        "Weight dimensional UoM",
+        domain=lambda self: self._get_dimension_uom_domain(),
+        help="UoM for weight",
+        default=lambda self: self.env.ref("uom.product_uom_kgm"),
+    )   
+
     is_dealer_product = fields.Boolean(
         compute='_compute_is_dealer_product', string='is_dealer_product')
+
+    @api.model
+    def _get_dimension_uom_domain(self):
+        return [("category_id", "=", self.env.ref("uom.uom_categ_length").id)]  
 
     @api.depends('tmpl_all_kvs')
     def _compute_is_dealer_product(self):
@@ -44,24 +72,3 @@ class ProductTemplate(models.Model):
 
         return combination_info            
 
-    # Define all the related fields in product.template with 'readonly=False'
-    # to be able to modify the values from product.template.
-    dimensional_uom_id = fields.Many2one(
-        "uom.uom",
-        "Dimensional UoM",
-        related="product_variant_ids.dimensional_uom_id",
-        help="UoM for width, depth, height",
-        readonly=False,
-    )
-    product_width = fields.Float(
-        related="product_variant_ids.product_width", readonly=False
-    )   
-    product_depth = fields.Float(
-        related="product_variant_ids.product_depth", readonly=False
-    )
-    product_height = fields.Float(
-        related="product_variant_ids.product_height", readonly=False
-    )
-    product_wdh = fields.Boolean(
-        related="product_variant_ids.product_wdh", readonly=False
-    )

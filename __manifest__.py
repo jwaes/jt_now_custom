@@ -14,12 +14,13 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.45',
+    'version': '1.47',
 
     # any module necessary for this one to work correctly
     'depends': [
         'base',
         'web_editor',
+        'website_sale',
         'website_sale_stock',
         'sale_management',
         'crm',
@@ -62,12 +63,13 @@
         ],
         'web.assets_frontend': [
             'jt_now_custom/static/src/js/**/*',
+            'jt_now_custom/static/src/css/**/*',
         ],        
         'web.assets_qweb': [
             'jt_now_custom/static/src/xml/*.xml',
         ],
         'website.assets_wysiwyg': [
             'jt_now_custom/static/src/snippets/s_video_plyr/options.js',
-        ],        
+        ],           
     },
 }

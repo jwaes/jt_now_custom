@@ -3,17 +3,7 @@ from odoo import api, fields, models
 class ProductProduct(models.Model):
     _inherit = "product.product"
     
-    product_wdh = fields.Boolean("wdh", default=False)
-    product_width = fields.Float("width")
-    product_depth = fields.Float("depth")
-    product_height = fields.Float("height")
-    dimensional_uom_id = fields.Many2one(
-        "uom.uom",
-        "Dimensional UoM",
-        domain=lambda self: self._get_dimension_uom_domain(),
-        help="UoM for width, depth, height",
-        default=lambda self: self.env.ref("uom.product_uom_millimeter"),
-    )
+ 
 
     is_stock_product = fields.Boolean(compute='_compute_is_stock_product', string='Is stock product')
 
@@ -54,3 +44,49 @@ class ProductProduct(models.Model):
     @api.model
     def _get_dimension_uom_domain(self):
         return [("category_id", "=", self.env.ref("uom.uom_categ_length").id)]    
+
+
+    # Define all the related fields in product.template with 'readonly=False'
+    # to be able to modify the values from product.template.
+    dimensional_uom_id = fields.Many2one(
+        "uom.uom",
+        "Dimensional UoM",
+        related="product_tmpl_id.dimensional_uom_id",
+        help="UoM for width, depth, height",
+        readonly=False,
+    )
+    product_width = fields.Float(
+        related="product_tmpl_id.product_width", readonly=True
+    )   
+    product_depth = fields.Float(
+        related="product_tmpl_id.product_depth", readonly=True
+    )
+    product_height = fields.Float(
+        related="product_tmpl_id.product_height", readonly=True
+    )
+    product_wdh = fields.Boolean(
+        related="product_tmpl_id.product_wdh", readonly=True
+    )        
+
+    product_packaging_width = fields.Float(
+        related="product_tmpl_id.product_packaging_width", readonly=True
+    )   
+    product_packaging_depth = fields.Float(
+        related="product_tmpl_id.product_packaging_depth", readonly=True
+    )
+    product_packaging_height = fields.Float(
+        related="product_tmpl_id.product_packaging_height", readonly=True
+    )
+    weight_uom_id = fields.Many2one(
+        "uom.uom",
+        "Weight dimensional UoM",
+        related="product_tmpl_id.weight_uom_id",
+        help="UoM for weight",
+        readonly=True,
+    )    
+    product_weight = fields.Float(
+        related="product_tmpl_id.product_weight", readonly=True
+    )   
+    product_packaging_weight = fields.Float(
+        related="product_tmpl_id.product_packaging_weight", readonly=True
+    )   
