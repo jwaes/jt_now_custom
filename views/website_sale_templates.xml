@@ -134,23 +134,10 @@
                 </div>
             </div>         
         </xpath>
-    </template>
+    </template>  
 
-    <template id="categories_top_recursive" name="Category list">
-        <li class="nav-item">
-            <t t-call="website_sale.categorie_link"/>
-            <ul t-if="c.child_id" class="nav flex-column nav-hierarchy">
-                <t t-foreach="c.child_id" t-as="c">
-                    <t t-if="not search or c.id in search_categories_ids">
-                        <t t-call="website_sale.categories_recursive" />
-                    </t>
-                </t>
-            </ul>
-        </li>
-    </template>    
-
-    <!-- <template id="products" inherit_id="website_sale.products">
+    <template id="products" inherit_id="website_sale.products">
         <xpath expr="//div[hasclass('products_header')]//t[@t-call='website_sale.search']" position="replace"/>
-    </template> -->
+    </template>
 
 </odoo>
