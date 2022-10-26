@@ -4,14 +4,14 @@
     <template id="website_sale_product" inherit_id="jt_product_properties_website.website_sale_product">
         <xpath expr="//div[hasclass('card')]" position="after">
             <t t-if="product_variant.product_wdh">
-            <div class="card bg-white" data-name="Item">
-                <a href="#" t-attf-data-target="#myCollapseTab{{uniq}}_dim" role="tab" data-toggle="collapse" aria-expanded="false" class="collapsed card-header s_faq_collapse_right_icon">Dimensions</a>
-                <div t-attf-id="myCollapseTab{{uniq}}_dim" class="collapse" data-parent="#myCollapse" role="tabpanel">
-                    <div class="card-body">
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tortor risus, rutrum non est non, pellentesque suscipit tellus. Sed consectetur purus et libero sagittis, a aliquet nibh pulvinar. Fusce et molestie dui. Nulla hendrerit eu augue nec convallis. </p>
+                <div class="card bg-white" data-name="Item">
+                    <a href="#" t-attf-data-target="#myCollapseTab{{uniq}}_dim" role="tab" data-toggle="collapse" aria-expanded="false" class="collapsed card-header s_faq_collapse_right_icon">Dimensions</a>
+                    <div t-attf-id="myCollapseTab{{uniq}}_dim" class="collapse" data-parent="#myCollapse" role="tabpanel">
+                        <div class="card-body">
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tortor risus, rutrum non est non, pellentesque suscipit tellus. Sed consectetur purus et libero sagittis, a aliquet nibh pulvinar. Fusce et molestie dui. Nulla hendrerit eu augue nec convallis. </p>
+                        </div>
                     </div>
                 </div>
-            </div>
             </t>
         </xpath>
     </template>
@@ -20,7 +20,7 @@
         <xpath expr="//div[@id='add_to_cart_wrap']" position="after">
             <div class="product_stockinfo o_not_editable mt-3" style="display:none;" />
         </xpath>
-    </template>    
+    </template>
 
     <template id="website_sale_product_stockinfo">
         <t t-if="not product_variant.is_dealer_product">
@@ -72,72 +72,67 @@
     </template>
 
     <!-- remove the price from the overview -->
-    <template id="products_item"  inherit_id="website_sale.products_item">
+    <template id="products_item" inherit_id="website_sale.products_item">
         <!-- <xpath expr="//div[hasclass('product_price')]" position="attributes">
             <attribute name="style">display:none;</attribute>
         </xpath> -->
 
 
-
         <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="before">
-            <t t-set="combination_info" t-value="product._get_combination_info(only_template=False, add_qty=add_qty or 1, pricelist=pricelist)"/>
-            <t t-set="show_price" t-value="combination_info['total_included'] if combination_info['tax_display'] == 'total_included' else combination_info['total_excluded']"/>
+            <t t-set="combination_info" t-value="product._get_combination_info(only_template=False, add_qty=add_qty or 1, pricelist=pricelist)" />
+            <t t-set="show_price" t-value="combination_info['total_included'] if combination_info['tax_display'] == 'total_included' else combination_info['total_excluded']" />
         </xpath>
 
         <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="attributes">
             <attribute name="t-if">show_price</attribute>
             <attribute name="t-esc">show_price</attribute>
-        </xpath>        
+        </xpath>
 
         <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
             <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>
-        </xpath>        
+        </xpath>
     </template>
 
     <template id="products_categories_top" inherit_id="website_sale.products" active="False" customize_show="True" name="eCommerce Categories Top">
         <xpath expr="//div[hasclass('o_wsale_products_grid_table_wrapper')]" position="before">
             <t t-if="category.id">
-                <t t-set="entries" t-value="not search and category.child_id or category.child_id.filtered(lambda c: category.id in search_categories_ids)"/>
-    
+                <t t-set="entries" t-value="not search and category.child_id or category.child_id.filtered(lambda c: category.id in search_categories_ids)" />
+
                 <t t-if="not entries">
-                    <t t-set="parent" t-value="category.parent_id"/>
-                    <t t-set="entries" t-value="not search and parent.child_id or parent.child_id.filtered(lambda c: parent.id in search_categories_ids)"/>
+                    <t t-set="parent" t-value="category.parent_id" />
+                    <t t-set="entries" t-value="not search and parent.child_id or parent.child_id.filtered(lambda c: parent.id in search_categories_ids)" />
                 </t>
             </t>
             <t t-else="">
-                <t t-set="entries" t-value="categories"/>
+                <t t-set="entries" t-value="categories" />
             </t>
-            <t t-set="navClass" t-valuef="light"/>
-    
+            <t t-set="navClass" t-valuef="light" />
+
             <div t-if="entries" class="o_wsale_filmstip_container products_categories d-flex align-items-stretch mb-2 overflow-hidden">
                 <div class="o_wsale_filmstip_wrapper pb-1 mb-2 overflow-auto">
                     <ul class="o_wsale_filmstip d-flex align-items-stretch mb-0 list-unstyled overflow-visible">
-                        <t t-foreach="entries" t-as="c" t-if="c.image_128" t-set="atLeastOneImage" t-value="True"/>
-                        <t t-if="category.parent_id" t-set="backUrl" t-value="keep('/shop/category/' + slug(category.parent_id), category=0)"/>
-                        <t t-else="" t-set="backUrl" t-value="'/shop'"/>
-    
-                        <li t-foreach="entries" t-as="c"
-                            t-attf-class="d-flex {{'pe-3' if not c_last else ''}}"
-                            t-att-data-link-href="keep('/shop/category/' + slug(c), category=0)"
-                            t-if="not c.hidden">
-                            <input type="radio" t-attf-name="wsale_categories_top_radios_{{parentCategoryId}}" class="btn-check pe-none" t-att-id="c.id" t-att-value="c.id" t-att-checked="'true' if c.id == category.id else None"/>
-    
+                        <t t-foreach="entries" t-as="c" t-if="c.image_128" t-set="atLeastOneImage" t-value="True" />
+                        <t t-if="category.parent_id" t-set="backUrl" t-value="keep('/shop/category/' + slug(category.parent_id), category=0)" />
+                        <t t-else="" t-set="backUrl" t-value="'/shop'" />
+
+                        <li t-foreach="entries" t-as="c" t-attf-class="d-flex {{'pe-3' if not c_last else ''}}" t-att-data-link-href="keep('/shop/category/' + slug(c), category=0)" t-if="not c.hidden">
+                            <input type="radio" t-attf-name="wsale_categories_top_radios_{{parentCategoryId}}" class="btn-check pe-none" t-att-id="c.id" t-att-value="c.id" t-att-checked="'true' if c.id == category.id else None" />
+
                             <div t-attf-class=" btn btn-{{navClass}} d-flex align-items-center {{'ps-2 pe-3' if c.image_128 else 'px-4'}} fs-6 fw-normal {{ 'border-primary' if c.id == category.id else '' }}" t-att-for="c.id">
-                                <div t-if="c.image_128"
-                                     t-attf-style="background-image:url('data:image/png;base64,#{c.image_128}')"
-                                     class="o_image_40_cover oe_img_bg o_bg_img_center rounded-3 me-3"
-                                     t-att-alt="c.name "/>
-                                <span t-field="c.name"/>
+                                <div t-if="c.image_128" t-attf-style="background-image:url('data:image/png;base64,#{c.image_128}')" class="o_image_40_cover oe_img_bg o_bg_img_center rounded-3 me-3" t-att-alt="c.name " />
+                                <span t-field="c.name" />
                             </div>
                         </li>
                     </ul>
                 </div>
-            </div>         
+            </div>
         </xpath>
-    </template>  
-<!-- 
+    </template>
+
     <template id="products" inherit_id="website_sale.products">
-        <xpath expr="//div[hasclass('products_header')]//t[@t-call='website_sale.search']" position="replace"/>
-    </template> -->
+        <xpath expr="//div[hasclass('products_header')]" position="attributes">
+            <attribute name="class" separator=" " add="d-none" />
+        </xpath>
+    </template>
 
 </odoo>
