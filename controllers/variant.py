@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.website_sale.controllers.variant import WebsiteSaleVariantController
+from odoo.tools.misc import get_lang
 
 class WebsiteSaleStockPropertiesVariantController(WebsiteSaleVariantController):
     @http.route()
@@ -10,7 +11,9 @@ class WebsiteSaleStockPropertiesVariantController(WebsiteSaleVariantController):
         
         product = request.env['product.product'].sudo().browse(combination['product_id'])
 
-        stockinfo_view = request.env['ir.ui.view']._render_template('jt_now_custom.website_sale_product_stockinfo', values={
+        lang = get_lang(request.env).code
+
+        stockinfo_view = request.env['ir.ui.view'].with_context(lang=lang)._render_template('jt_now_custom.website_sale_product_stockinfo', values={
             'product_variant': product,
         })
 
