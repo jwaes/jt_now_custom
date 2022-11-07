@@ -6,6 +6,7 @@ class ProductProduct(models.Model):
  
 
     is_stock_product = fields.Boolean(compute='_compute_is_stock_product', string='Is stock product')
+    is_pickup_product = fields.Boolean(compute='_compute_is_pickup_product', string='Is pickup product')
 
     
     lead_time_in_stock = fields.Char(compute='_compute_lead_time_in_stock', string='Lead time in stock')
@@ -40,6 +41,16 @@ class ProductProduct(models.Model):
                         product.is_stock_product = True
                         return
             product.is_stock_product = False
+
+    @api.depends('all_kvs')
+    def _compute_is_pickup_product(self):
+        for product in self: 
+            for kv in product.all_kvs:
+                if kv.code == "internal.delivery.noweu":
+                    if kv.value_id.code == "pickup":
+                        product.is_pickup_product = True
+                        return
+            product.is_pickup_product = False            
 
     @api.model
     def _get_dimension_uom_domain(self):

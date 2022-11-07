@@ -45,10 +45,17 @@
             <t t-else="">
                 <!--stock products -->
                 <t t-if="product_variant.free_qty &gt; 0">
-                    <div class="alert alert-success mdi mdi-alert mdi-truck-fast-outline" role="alert">
-                        This product usually ships from our warehouse in
-                        <t t-esc="product_variant.lead_time_in_stock" />
-                    </div>
+                    <t t-if="product_variant.is_pickup_product">
+                        <div class="alert alert-warning mdi mdi-alert mdi-exclamation-thick" role="alert">
+                            This product is to be picked up by the client, please contact us about this.
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="alert alert-success mdi mdi-alert mdi-truck-fast-outline" role="alert">
+                            This product usually ships from our warehouse in
+                            <t t-esc="product_variant.lead_time_in_stock" />
+                        </div>
+                    </t>
                 </t>
                 <t t-else="">
                     <div class="alert alert-info mdi mdi-alert mdi-truck-delivery-outline" role="alert">
