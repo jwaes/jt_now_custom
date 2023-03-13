@@ -14,12 +14,13 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.55',
+    'version': '1.57',
 
     # any module necessary for this one to work correctly
     'depends': [
         'base',
         'coupon',
+        'sale_coupon',
         'web_editor',
         'website_sale',
         'website_sale_stock',
@@ -50,6 +51,7 @@
         "views/ir_qweb_widget_templates.xml",
         "views/portal_templates.xml",
         "views/res_partner_views.xml",
+        "views/sale_order_views.xml",
         "views/stock_picking_views.xml",
         "views/product_view.xml",
         "views/webclient_templates.xml",

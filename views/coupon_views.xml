@@ -12,6 +12,25 @@
         </field>
     </record>
 
+    <record id="coupon_generate_view_search" model="ir.ui.view">
+        <field name="name">coupon.coupon.search</field>
+        <field name="model">coupon.coupon</field>
+        <field name="arch" type="xml">
+            <search string="Coupons">
+                <filter string="Valid" domain="[('state', '=', 'new')]" name="valid_coupons"/>
+                <filter string="Used" domain="[('state', '=', 'used')]" name="used_coupons"/>
+                <separator/>
+                <filter string="Dealer" domain="[('dealer_id', '!=', False)]" name="dealer_coupons"/>
+                <group expand="1" string="Group By">
+                    <filter string="Dealer" name="group_dealer_id" context="{'group_by': 'dealer_id'}"/>
+                    <filter string="Program" name="group_program_id" context="{'group_by': 'program_id'}"/>
+                    <filter string="State" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
     <record id="coupon_view_form" model="ir.ui.view">
         <field name="name">coupon.coupon.form</field>
         <field name="model">coupon.coupon</field>

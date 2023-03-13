@@ -9,6 +9,17 @@
             <field name="vat" position="after">
                 <field name="their_ref" />
             </field>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+
+                <button type="object"
+                    name="action_view_coupons"
+                    class="oe_stat_button"
+                    icon="fa-ticket" attrs="{'invisible':[('dealer_coupon_count','=', 0)]}">
+                    <field name="dealer_coupon_count" widget="statinfo" string="Coupon" help="Dealer coupons"/>
+                </button>                
+            </xpath>
+
         </field>
     </record>
 
