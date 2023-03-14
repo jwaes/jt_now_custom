@@ -14,7 +14,7 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.57',
+    'version': '1.59',
 
     # any module necessary for this one to work correctly
     'depends': [
@@ -40,6 +40,8 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        "report/coupon_report_templates.xml",
+        "report/coupon_report.xml",
         "report/purchase_quotation_templates.xml",
         "report/purchase_order_templates.xml",
         "report/sale_report_templates.xml",
