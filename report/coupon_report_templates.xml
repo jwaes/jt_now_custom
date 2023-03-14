@@ -71,7 +71,6 @@
                                 <h2 class="mt-4">
                                     <strong class="bg-light" t-esc="o.code"></strong>
                                 </h2>
-                                <br/>
                                 <h4>Use this benefit code during checkout on our website<br/><t t-esc="o.program_id.company_id.partner_id.website"/><br/>or scan the QR code below.</h4>
                                 <h4 t-if="o.program_id.rule_min_quantity > 1">
                                     <span>Minimum purchase of</span>
@@ -92,13 +91,13 @@
                                 <br/><br/>
                                 <div class="mt32">
                                     <div class="text-center">
-                                        <img alt="Logo" t-att-src="'/logo?company=%d' % (o.program_id.company_id)" t-att-alt="'%s' % (o.program_id.company_id.name)" style="border:0px solid transparent; height: 50;" height="50"/>
+                                        <img alt="Logo" t-att-src="'/logo?company=%d' % (o.program_id.company_id)" t-att-alt="'%s' % (o.program_id.company_id.name)" style="border:0px solid transparent; margin-bottom: 20px; height: 100;" height="100"/>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="text-center d-inline-block">
                                         <span t-field="o.program_id.company_id.partner_id"
-                                            t-options='{"widget": "contact", "fields": ["email", "website"], "no_marker": True}'/>
+                                            t-options='{"widget": "contact", "fields": ["email",], "no_marker": True}'/>
                                     </div>
                                 </div>
                             </div>
