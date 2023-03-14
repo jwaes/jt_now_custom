@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
     <!-- <template id="product" inherit_id="website_sale.product">
         <xpath expr="//form" position="attributes">
             <attribute name="t-if">product._is_add_to_cart_possible() and not product.is_dealer_product</attribute>
@@ -52,28 +51,16 @@
         </div>
     </template>
 
-    <!-- disabling the carousel functionality for now -->
-    <template id="shop_product_carousel" inherit_id="website_sale.shop_product_carousel">
-        <xpath expr="//div[hasclass('o_carousel_product_outer')]" position="replace">
-
-            <div class="carousel-inner h-100">
-                <t t-foreach="product_images" t-as="product_image">
-                    <t t-if="product_image_first">
-                        <div t-attf-class="carousel-item h-100#{' active' if product_image_first else ''}">
-                            <div t-if="product_image._name == 'product.image' and product_image.embed_code" class="d-flex align-items-center justify-content-center h-100 embed-responsive embed-responsive-16by9">
-                                <t t-out="product_image.embed_code" />
-                            </div>
-                            <div t-else="" t-field="product_image.image_1920" class="d-flex align-items-center justify-content-center h-100" t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920", "itemprop": "image"}' />
-                        </div>
-                    </t>
-                </t>
-            </div>
+    <template id="shop_product_carousel_square" inherit_id="website_sale.shop_product_carousel">
+        <xpath expr="//t[@t-set='product_images']" position="attributes">
+            <attribute name="t-value">product_variant._get_square_images() if product_variant else product._get_square_images()</attribute>
         </xpath>
-
-    </template>
+    </template>    
 
     <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
-        <xpath expr="//div" position="replace"/>
+        <xpath expr="//li" position="attributes">
+            <attribute name="t-if">product_image.is_image_square</attribute>
+        </xpath>
     </template>
 
 
