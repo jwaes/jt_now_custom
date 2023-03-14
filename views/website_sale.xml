@@ -21,11 +21,29 @@
             <attribute name="t-if">not product.is_dealer_product</attribute>
         </xpath>
         <xpath expr="//div[@id='add_to_cart_wrap']" position="after">
-            <div t-if="product.is_dealer_product">
-                <p class="alert alert-info mdi mdi-alert mdi-storefront-outline">This product is available through our <a href="/retailers">retailers</a>.</p>                
+            <div id="dealer_product" t-if="product.is_dealer_product">
+                <p>
+                    This product is available through our retailers.
+                </p>
+                <p>                   
+                    <a class="btn btn-secondary" href="/retailers">find local retailer</a>
+                </p>             
             </div>
+            <t t-call="jt_now_custom.professional_recruitement"/>
         </xpath>
         <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/>
+    </template>
+
+
+    <template id="professional_recruitement">
+        <div id="professional_recruitement" style="border-top: 1px solid #CED4DA;" class="mt-3 pt-2">
+            <p>
+                Are you a professional?
+            </p>
+            <p>
+                <a href="/my/home">Sign up</a> or <a href="/contact">get in touch</a> with us for more information about our trade conditions and project support.
+            </p>
+        </div>
     </template>
 
     <template id="product_quantity"  inherit_id="website_sale.product_quantity">
