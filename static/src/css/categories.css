@@ -38,3 +38,21 @@
     font-weight: normal;
     font-size: inherit;
 }
+
+.ribbon_now_custom_made {
+    position: absolute;
+    /* top: 0;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    padding: 0.25rem 0.5rem; */
+    margin: 0.5rem;
+    /* transform-origin: top right;
+    font-weight: normal;
+    font-size: inherit; */
+    background-image: url('/jt_now_custom/static/src/img/custom_made_rond.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: rgba(0, 0, 0, 0);
+    height: 5rem;
+}
