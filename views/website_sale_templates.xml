@@ -84,7 +84,6 @@
             <attribute name="style">display:none;</attribute>
         </xpath> -->
 
-
         <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="before">
             <t t-set="combination_info" t-value="product._get_combination_info(only_template=False, add_qty=add_qty or 1, pricelist=pricelist)" />
             <t t-set="show_price" t-value="combination_info['total_included'] if combination_info['tax_display'] == 'total_included' else combination_info['total_excluded']" />
@@ -94,6 +93,9 @@
             <attribute name="t-if">show_price</attribute>
             <attribute name="t-esc">show_price</attribute>
         </xpath>
+        <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="after">
+            <t t-if="not show_price"><span class="h5">&amp;nbsp;</span></t>
+        </xpath>        
 
         <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
             <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>

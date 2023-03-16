@@ -20,14 +20,16 @@
         </xpath>
 
         <xpath expr="//p[@t-field='product.description_sale']" position="after">
-            <p t-if="product.is_custom_made_product" id="custom_made_depens_dimensions" class="mt-5 mb-3">
-                <b>price depends on the dimensions</b>
-            </p>
-            <hr/>
-            <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80" class="mb-5"/>
-            <!-- <p>                   
-                <a class="btn btn-primary w-50" href="/retailers">quote request</a>
-            </p>  -->
+            <t t-if="product.is_custom_made_product">
+                <p id="custom_made_depens_dimensions" class="mt-5 mb-3">
+                    <b>price depends on the dimensions</b>
+                </p>
+                <hr/>
+                <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80" class="mb-5"/>
+                <!-- <p>                   
+                    <a class="btn btn-primary w-50" href="/retailers">quote request</a>
+                </p>  -->
+            </t>
         </xpath>
 
         <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/>
