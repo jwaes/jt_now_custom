@@ -31,6 +31,18 @@ class ProductTemplate(models.Model):
     is_dealer_product = fields.Boolean(
         compute='_compute_is_dealer_product', string='is_dealer_product')
 
+    is_custom_made_product = fields.Char(compute='_compute_is_custom_made_product', string='is_custom_made_product')
+    
+    @api.depends('tmpl_all_kvs')
+    def _compute_is_custom_made_product(self):
+        for tmpl in self:
+            for kv in tmpl.tmpl_all_kvs:
+                if kv.code == "internal.stock":
+                    if kv.value_id.code == "custom-made":
+                        tmpl.is_custom_made_product = True
+                        return
+            tmpl.is_custom_made_product = False
+
     @api.model
     def _get_dimension_uom_domain(self):
         return [("category_id", "=", self.env.ref("uom.uom_categ_length").id)]  
@@ -70,5 +82,12 @@ class ProductTemplate(models.Model):
                 'is_dealer_product': product.is_dealer_product,
             })
 
-        return combination_info            
+        return combination_info
+
+    def _is_add_to_cart_possible(self, parent_combination=None):
+        self.ensure_one()        
+        if self.is_custom_made_product:
+            return False
+        else:
+            return super()._get_possible_combinations(parent_combination)
 
