@@ -1,0 +1,9 @@
+
+body.o_docs_share_page #wrap > header .o_company_logo img {
+    max-height: 80px !important;
+}
+
+body.o_docs_share_page.o_home_menu_background {
+    background: none !important;
+    background-color: #F8F9FA !important;
+}

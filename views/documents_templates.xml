@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="public_page_layout" inherit_id="documents.public_page_layout">
+        <xpath expr="//footer/div" position="replace"/>
+
+        <xpath expr="//header/ul" position="replace"/>
+
+        <xpath expr="//span[hasclass('o_company_logo')]" position="replace">
+            <a href="/"><span class="o_company_logo" t-field="res_company.logo" t-options="{'widget': 'image'}" t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name"/></a>
+        </xpath>
+
+    </template>
+
+    <template id="share_single" inherit_id="documents.share_single">
+        <xpath expr="//div[hasclass('o_docs_single_container')]/div[hasclass('o_docs_single_actions')]/a" position="attributes">
+            <attribute name="class" add="text-dark" separator=" "/>
+        </xpath>
+    </template>
+
+</odoo>

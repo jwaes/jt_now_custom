@@ -14,7 +14,7 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.72',
+    'version': '1.73',
 
     # any module necessary for this one to work correctly
     'depends': [
@@ -51,6 +51,7 @@
         'views/snippets/s_video_plyr.xml',
         'views/snippets/snippets.xml',
         "views/crm_lead_views.xml",
+        "views/documents_templates.xml",
         "views/ir_qweb_widget_templates.xml",
         "views/portal_templates.xml",
         "views/res_partner_views.xml",
@@ -68,6 +69,9 @@
     'assets': {
         'web._assets_primary_variables': [
             'jt_now_custom/static/src/legacy/scss/primary_variables.scss',
+        ],
+        'web.assets_backend': [
+            'jt_now_custom/static/src/css/documents.css',
         ],
         'web.assets_frontend': [
             'jt_now_custom/static/src/js/**/*',
