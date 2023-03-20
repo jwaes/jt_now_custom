@@ -100,6 +100,22 @@
         <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
             <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>
         </xpath>
+
+        <xpath expr="//div[hasclass('o_wsale_product_information_text')]" position="after">
+            <div class="stock_info px-2">
+                <t t-if="product.product_variant_id.free_qty &gt; 0">
+                    <span class="bubble mx-0 bubble_on_stock" title="n stock" modifiers="{}"></span>
+                    on stock, ships in 
+                    <t t-esc="product.product_variant_id.lead_time_in_stock" />
+                </t>
+                <t t-else="">
+                    <span class="bubble mx-0 bubble_out_stock" title="n stock" modifiers="{}"></span>
+                    ships in 
+                    <t t-esc="product.product_variant_id.lead_time_out_stock" />
+                </t>
+            </div>            
+        </xpath>
+
     </template>
 
     <template id="products_categories_top" inherit_id="website_sale.products" active="False" customize_show="True" name="eCommerce Categories Top">
