@@ -23,15 +23,13 @@
     </template>
 
     <template id="website_sale_product_stockinfo">
-        <t t-if="product_variant.is_custom_made_product">
-            <!-- website product -->
-            <!-- <t t-if="not product_variant.is_stock_product"> -->
-                <t t-call="jt_now_custom.stock_bubble">
-                    <t t-set="show_pickup">True</t>
-                </t>
+        <!-- website product -->
+        <!-- <t t-if="not product_variant.is_stock_product"> -->
+            <t t-call="jt_now_custom.stock_bubble">
+                <t t-set="show_pickup">True</t>
+            </t>
 
-                <t t-call="jt_now_custom.personalized"/>
-        </t>
+            <t t-call="jt_now_custom.personalized"/>
     </template>
 
     <template id="cart_line_description_following_lines" inherit_id="website_sale.cart_line_description_following_lines">
@@ -80,7 +78,7 @@
     <template id="stock_bubble">
         <t t-set="stockprod" t-value="product_variant"/>
         <t t-if="not stockprod" t-set="stockprod"  t-value="product.product_variant_id" />
-        <div class="stock_info px-2">
+        <div class="stock_info px-2" t-if="not stockprod.is_custom_made_product">
             <t t-if="stockprod.free_qty &gt; 0">
                 <t t-if="stockprod.is_pickup_product and show_pickup">
                     <div class="mt-2 product_pickup" role="alert">
