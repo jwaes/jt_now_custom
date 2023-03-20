@@ -23,7 +23,7 @@
     </template>
 
     <template id="website_sale_product_stockinfo">
-        <t t-if="not product_variant.is_dealer_product">
+        <t t-if="product_variant.is_custom_made_product">
             <!-- website product -->
             <!-- <t t-if="not product_variant.is_stock_product"> -->
                 <t t-call="jt_now_custom.stock_bubble">
@@ -88,13 +88,13 @@
                     </div>
                 </t>
                 <t t-elif="stockprod.is_stock_product">
-                    <span class="bubble mx-0 bubble_on_stock" title="n stock" modifiers="{}"></span>
+                    <span class="bubble mx-0 bubble_on_stock" title="on stock" modifiers="{}"></span>
                     on stock, ships in 
                     <t t-esc="stockprod.lead_time_in_stock" />
                 </t>
             </t>
             <t t-else="">
-                <span class="bubble mx-0 bubble_out_stock" title="n stock" modifiers="{}"></span>
+                <span class="bubble mx-0 bubble_out_stock" title="out of stock" modifiers="{}"></span>
                 ships in 
                 <t t-esc="stockprod.lead_time_out_stock" />
             </t>
@@ -103,7 +103,9 @@
 
     <template id="personalized">
         <!-- personlised products -->
-        <div class="mt-2 product_personalized">
+        <t t-set="stockprod" t-value="product_variant"/>
+        <t t-if="not stockprod" t-set="stockprod"  t-value="product.product_variant_id" />
+        <div class="mt-2 product_personalized" t-if="not stockprod.is_dealer_product and not stockprod.is_stock_product">
             This product is personalized for you and therefore it cannot be returned.
             <a href="/faq#Personalized-products">Read more</a>
         </div>           

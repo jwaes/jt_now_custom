@@ -25,7 +25,7 @@
                     <b>price depends on the dimensions</b>
                 </p>
                 <hr/>
-                <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80" class="mb-5"/>
+                <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80"/>
                 <!-- <p>                   
                     <a class="btn btn-primary w-50" href="/retailers">quote request</a>
                 </p>  -->
@@ -44,6 +44,10 @@
             <t t-call="jt_now_custom.personalized"/>      
             <t t-call="jt_now_custom.find_retailer"/>
             <t t-call="jt_now_custom.professional_recruitement"/>
+        </xpath>
+
+        <xpath expr="//div[@id='product_attributes_simple']" position="attributes">
+            <attribute name="class" separator=" " add="mt-5"/>
         </xpath>
 
     </template>
