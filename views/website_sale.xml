@@ -38,6 +38,10 @@
         <xpath expr="//p[@t-else='']" position="replace"/>
 
         <xpath expr="//div[@id='product_attributes_simple']" postion="before">
+            <t t-call="jt_now_custom.stock_bubble">
+                <t t-set="show_pickup">False</t>
+            </t>      
+            <t t-call="jt_now_custom.personalized"/>      
             <t t-call="jt_now_custom.find_retailer"/>
             <t t-call="jt_now_custom.professional_recruitement"/>
         </xpath>

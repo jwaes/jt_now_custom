@@ -25,45 +25,12 @@
     <template id="website_sale_product_stockinfo">
         <t t-if="not product_variant.is_dealer_product">
             <!-- website product -->
-            <t t-if="not product_variant.is_stock_product">
-                <!-- personlised products -->
-                <div class="alert alert-warning mdi mdi-alert mdi-palette-swatch-variant" role="alert">
-                    This product is personalized for you and therefore it cannot be returned.
-                    <a href="/faq#Personalized-products">Read more</a>
-                </div>
+            <!-- <t t-if="not product_variant.is_stock_product"> -->
+                <t t-call="jt_now_custom.stock_bubble">
+                    <t t-set="show_pickup">True</t>
+                </t>
 
-                <div class="alert alert-info mdi mdi-alert mdi-truck-delivery-outline" role="alert">
-                    This product usually ships in
-                    <t t-if="product_variant.free_qty &gt; 0">
-                        <t t-esc="product_variant.lead_time_in_stock" />
-                    </t>
-                    <t t-else="">
-                        <t t-esc="product_variant.lead_time_out_stock" />
-                    </t>
-                </div>
-            </t>
-            <t t-else="">
-                <!--stock products -->
-                <t t-if="product_variant.free_qty &gt; 0">
-                    <t t-if="product_variant.is_pickup_product">
-                        <div class="alert alert-warning mdi mdi-alert mdi-exclamation-thick" role="alert">
-                            This product is to be picked up by the client, please contact us about this.
-                        </div>
-                    </t>
-                    <t t-else="">
-                        <div class="alert alert-success mdi mdi-alert mdi-truck-fast-outline" role="alert">
-                            This product usually ships from our warehouse in
-                            <t t-esc="product_variant.lead_time_in_stock" />
-                        </div>
-                    </t>
-                </t>
-                <t t-else="">
-                    <div class="alert alert-info mdi mdi-alert mdi-truck-delivery-outline" role="alert">
-                        This product is being produced, we expect it to ship in
-                        <t t-esc="product_variant.lead_time_out_stock" />
-                    </div>
-                </t>
-            </t>
+                <t t-call="jt_now_custom.personalized"/>
         </t>
     </template>
 
@@ -102,20 +69,44 @@
         </xpath>
 
         <xpath expr="//div[hasclass('o_wsale_product_information_text')]" position="after">
-            <div class="stock_info px-2">
-                <t t-if="product.product_variant_id.free_qty &gt; 0">
-                    <span class="bubble mx-0 bubble_on_stock" title="n stock" modifiers="{}"></span>
-                    on stock, ships in 
-                    <t t-esc="product.product_variant_id.lead_time_in_stock" />
-                </t>
-                <t t-else="">
-                    <span class="bubble mx-0 bubble_out_stock" title="n stock" modifiers="{}"></span>
-                    ships in 
-                    <t t-esc="product.product_variant_id.lead_time_out_stock" />
-                </t>
-            </div>            
+            <t t-call="jt_now_custom.stock_bubble">
+                <t t-set="show_pickup">False</t>
+            </t>    
         </xpath>
 
+    </template>
+
+
+    <template id="stock_bubble">
+        <t t-set="stockprod" t-value="product_variant"/>
+        <t t-if="not stockprod" t-set="stockprod"  t-value="product.product_variant_id" />
+        <div class="stock_info px-2">
+            <t t-if="stockprod.free_qty &gt; 0">
+                <t t-if="stockprod.is_pickup_product and show_pickup">
+                    <div class="mt-2 product_pickup" role="alert">
+                        This product is to be picked up by the client, please contact us about this.
+                    </div>
+                </t>
+                <t t-elif="stockprod.is_stock_product">
+                    <span class="bubble mx-0 bubble_on_stock" title="n stock" modifiers="{}"></span>
+                    on stock, ships in 
+                    <t t-esc="stockprod.lead_time_in_stock" />
+                </t>
+            </t>
+            <t t-else="">
+                <span class="bubble mx-0 bubble_out_stock" title="n stock" modifiers="{}"></span>
+                ships in 
+                <t t-esc="stockprod.lead_time_out_stock" />
+            </t>
+        </div>   
+    </template>
+
+    <template id="personalized">
+        <!-- personlised products -->
+        <div class="mt-2 product_personalized">
+            This product is personalized for you and therefore it cannot be returned.
+            <a href="/faq#Personalized-products">Read more</a>
+        </div>           
     </template>
 
     <template id="products_categories_top" inherit_id="website_sale.products" active="False" customize_show="True" name="eCommerce Categories Top">
