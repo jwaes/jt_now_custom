@@ -13,7 +13,7 @@
         </xpath>
     </template> -->
 
-    <template id="product" inherit_id="website_sale.product" priority="4">
+    <template id="product2" inherit_id="website_sale.product" priority="4">
 
         <xpath expr="//div[@id='add_to_cart_wrap']/a" position="attributes">
             <attribute name="t-if">not product.is_dealer_product</attribute>
