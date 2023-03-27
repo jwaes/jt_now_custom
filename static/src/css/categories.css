@@ -13,7 +13,7 @@
 }
 
 .pe-3 {
-    /* padding-right: 1rem !important; */
+    padding-right: 1rem !important;
 }
 
 .me-3 {
@@ -22,11 +22,11 @@
 
 .o_wsale_filmstip .btn {
     background: none !important;
-    border: none !important;
+    /* border: none !important; */
 }
 
 .o_wsale_filmstip .btn-light {
-    /* border: 1px solid #d6d3d1; */
+    border: 1px solid #d6d3d1;
 }
 
 
