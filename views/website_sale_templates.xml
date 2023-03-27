@@ -21,11 +21,14 @@
             <div class="product_stockinfo o_not_editable mt-3" style="display:none;" />
         </xpath>
 
+        <!-- breadcrumb -->
         <xpath expr="//section/div[hasclass('row')]/div[1]" position="attributes">
             <attribute name="class" separator=" " add="col-lg-8" remove="col-lg-6" />
         </xpath>
+
+        <!-- searchbox -->
         <xpath expr="//section/div[hasclass('row')]/div[2]" position="attributes">
-            <attribute name="class" separator=" " add="col-lg-4" remove="col-lg-6" />
+            <attribute name="class" separator=" " add="col-lg-4 d-none" remove="col-lg-6" />
         </xpath>
 
         <xpath expr="//li[@t-if='category']" position="replace">

@@ -32,7 +32,7 @@
             </t>
         </xpath>
 
-        <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/>
+        <!-- <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/> -->
 
         <!-- hide the no valid combination message -->
         <xpath expr="//p[@t-else='']" position="replace"/>
