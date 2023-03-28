@@ -50,6 +50,7 @@
         <!-- website product -->
         <!-- <t t-if="not product_variant.is_stock_product"> -->
             <t t-call="jt_now_custom.stock_bubble">
+                <t t-set="stockprod" t-value="product_variant"/>
                 <t t-set="show_pickup">True</t>
             </t>
 
@@ -67,11 +68,7 @@
         </xpath>
     </template>
 
-    <!-- remove the price from the overview -->
     <template id="products_item" inherit_id="website_sale.products_item">
-        <!-- <xpath expr="//div[hasclass('product_price')]" position="attributes">
-            <attribute name="style">display:none;</attribute>
-        </xpath> -->
 
         <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="before">
             <t t-set="combination_info" t-value="product._get_combination_info(only_template=False, add_qty=add_qty or 1, pricelist=pricelist)" />
@@ -92,6 +89,7 @@
 
         <xpath expr="//div[hasclass('o_wsale_product_information_text')]" position="after">
             <t t-call="jt_now_custom.stock_bubble">
+                <t t-set="stockprod" t-value="product.product_variant_id"/>
                 <t t-set="show_pickup">False</t>
             </t>    
         </xpath>
@@ -100,8 +98,8 @@
 
 
     <template id="stock_bubble">
-        <t t-set="stockprod" t-value="product_variant"/>
-        <t t-if="not stockprod" t-set="stockprod"  t-value="product.product_variant_id" />
+        <!-- <t t-set="stockprod" t-value="product_variant"/>
+        <t t-if="not stockprod" t-set="stockprod"  t-value="product.product_variant_id" /> -->
         <div class="stock_info px-2" t-if="not stockprod.is_custom_made_product">
             <t t-if="stockprod.sudo().free_qty &gt; 0">
                 <t t-if="stockprod.is_pickup_product and show_pickup">
