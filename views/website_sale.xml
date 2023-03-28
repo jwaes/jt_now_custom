@@ -122,11 +122,11 @@
         </xpath>
     </template>    
 
-    <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
+    <!-- <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
         <xpath expr="//li" position="attributes">
             <attribute name="t-if">product_image.is_image_square</attribute>
         </xpath>
-    </template>
+    </template> -->
 
 
 </odoo>

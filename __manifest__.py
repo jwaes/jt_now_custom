@@ -14,12 +14,13 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.84',
+    'version': '1.85',
 
     # any module necessary for this one to work correctly
     'depends': [
         'base',
         'coupon',
+        'documents',
         'sale_coupon',
         'web_editor',
         'website_sale',
