@@ -1,4 +1,7 @@
+import logging
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
@@ -12,25 +15,30 @@ class ProductProduct(models.Model):
     lead_time_in_stock = fields.Char(compute='_compute_lead_time_in_stock', string='Lead time in stock')
     lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='lead_time_out_stock')
 
-
     
-    @api.depends('all_kvs')
+    @api.depends('all_kvs','all_kvs.text')
     def _compute_lead_time_in_stock(self):
         for product in self:
+            _logger.info("product shipping in stock ")
+            product.lead_time_in_stock = "not set"
             for kv in product.all_kvs:
                 if kv.code == "internal.ships.instock":
                     product.lead_time_in_stock = kv.text
-                    return
-            product.lead_time_in_stock = "not set"
+                    _logger.info("product shipping in stock %s ", kv.text)
+                    break
+
     
-    @api.depends('all_kvs')
+    @api.depends('all_kvs', 'all_kvs.text')
     def _compute_lead_time_out_stock(self):
-        for product in self: 
+        for product in self:
+            _logger.info("product shipping out of stock ")
+            product.lead_time_out_stock = "not set"
             for kv in product.all_kvs:
                 if kv.code == "internal.ships.outofstock":
                     product.lead_time_out_stock = kv.text
-                    return
-            product.lead_time_out_stock = "not set"                    
+                    _logger.info("product shipping out of stock %s ", kv.text)
+                    break
+                    
     
     @api.depends('all_kvs')
     def _compute_is_stock_product(self):
