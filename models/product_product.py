@@ -19,24 +19,26 @@ class ProductProduct(models.Model):
     @api.depends('all_kvs','all_kvs.text')
     def _compute_lead_time_in_stock(self):
         for product in self:
-            _logger.info("%s shipping in stock ", product.name)
+            _logger.info("┌── %s ", product.name)
             product.lead_time_in_stock = "not set"
             for kv in product.all_kvs:
+                _logger.info("├─ %s : %s ", kv.code, kv.text)
                 if kv.code == "internal.ships.instock":
                     product.lead_time_in_stock = kv.text
-                    _logger.info("%s shipping in stock %s ", product.name, kv.text)
+                    _logger.info("└─ set %s : %s", product.name, kv.text)
                     break
 
     
     @api.depends('all_kvs', 'all_kvs.text')
     def _compute_lead_time_out_stock(self):
         for product in self:
-            _logger.info("product shipping out of stock ")
+            _logger.info("┌── %s ", product.name)
             product.lead_time_out_stock = "not set"
             for kv in product.all_kvs:
+                _logger.info("├─ %s : %s ", kv.code, kv.text)
                 if kv.code == "internal.ships.outofstock":
                     product.lead_time_out_stock = kv.text
-                    _logger.info("product shipping out of stock %s ", kv.text)
+                    _logger.info("└─ set %s : %s", product.name, kv.text)
                     break
                     
     
