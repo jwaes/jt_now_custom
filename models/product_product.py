@@ -5,40 +5,44 @@ _logger = logging.getLogger(__name__)
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
+    _order = 'websequence, priority desc, default_code, name, id'
     
- 
+    websequence = fields.Integer('Web sequence', default=1, help='Give extra order for website variants')
 
     is_stock_product = fields.Boolean(compute='_compute_is_stock_product', string='Is stock product')
     is_pickup_product = fields.Boolean(compute='_compute_is_pickup_product', string='Is pickup product')
-
     
     lead_time_in_stock = fields.Char(compute='_compute_lead_time_in_stock', string='Lead time in stock')
     lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='lead_time_out_stock')
 
+    @api.depends('product_variant_ids')
+    def _compute_product_variant_id(self):
+        for p in self:
+            p.product_variant_id = p.product_variant_ids[:1].id
     
     @api.depends('all_kvs','all_kvs.text')
     def _compute_lead_time_in_stock(self):
         for product in self:
-            _logger.info("┌── %s ", product.name)
+            # _logger.info("┌── %s ", product.name)
             product.lead_time_in_stock = "not set"
             for kv in product.all_kvs:
-                _logger.info("├─ %s : %s ", kv.code, kv.text)
+                # _logger.info("├─ %s : %s ", kv.code, kv.text)
                 if kv.code == "internal.ships.instock":
                     product.lead_time_in_stock = kv.text
-                    _logger.info("└─ set %s : %s", product.name, kv.text)
+                    # _logger.info("└─ set %s : %s", product.name, kv.text)
                     break
 
     
     @api.depends('all_kvs', 'all_kvs.text')
     def _compute_lead_time_out_stock(self):
         for product in self:
-            _logger.info("┌── %s ", product.name)
+            # _logger.info("┌── %s ", product.name)
             product.lead_time_out_stock = "not set"
             for kv in product.all_kvs:
-                _logger.info("├─ %s : %s ", kv.code, kv.text)
+                # _logger.info("├─ %s : %s ", kv.code, kv.text)
                 if kv.code == "internal.ships.outofstock":
                     product.lead_time_out_stock = kv.text
-                    _logger.info("└─ set %s : %s", product.name, kv.text)
+                    # _logger.info("└─ set %s : %s", product.name, kv.text)
                     break
                     
     
