@@ -14,11 +14,6 @@ class ProductProduct(models.Model):
     
     lead_time_in_stock = fields.Char(compute='_compute_lead_time_in_stock', string='Lead time in stock')
     lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='lead_time_out_stock')
-
-    @api.depends('product_variant_ids')
-    def _compute_product_variant_id(self):
-        for p in self:
-            p.product_variant_id = p.product_variant_ids[:1].id
     
     @api.depends('all_kvs','all_kvs.text')
     def _compute_lead_time_in_stock(self):

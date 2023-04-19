@@ -52,6 +52,10 @@
                     </group>
                 </page>
             </xpath>
+
+            <field name="optional_product_ids" position="before">
+                <field name="allow_discount"/>
+            </field>
         </field>
     </record>    
 

@@ -33,6 +33,8 @@ class ProductTemplate(models.Model):
 
     is_custom_made_product = fields.Char(compute='_compute_is_custom_made_product', string='is_custom_made_product')
     
+    allow_discount = fields.Boolean('Allow Discount', default=True)
+
     @api.depends('tmpl_all_kvs')
     def _compute_is_custom_made_product(self):
         for tmpl in self:

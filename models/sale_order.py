@@ -19,3 +19,9 @@ class SaleOrder(models.Model):
         result = self.env["ir.actions.actions"]._for_xml_id('coupon.coupon_action')
         result['domain'] = [('id', 'in', self.applied_coupon_ids.ids)]
         return result
+
+    def _get_reward_values_discount_percentage_per_line(self, program, line):
+        discount_amount = 0.0
+        if line.product_template_id.allow_discount:
+            discount_amount = line.product_uom_qty * line.price_reduce * (program.discount_percentage / 100)
+        return discount_amount        
