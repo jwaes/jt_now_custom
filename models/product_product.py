@@ -14,6 +14,17 @@ class ProductProduct(models.Model):
     
     lead_time_in_stock = fields.Char(compute='_compute_lead_time_in_stock', string='Lead time in stock')
     lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='lead_time_out_stock')
+
+    google_shipping_label = fields.Char(compute='_compute_google_shipping_label', string='Google Shipping Label')
+    
+    @api.depends('all_kvs','all_kvs.text')
+    def _compute_google_shipping_label(self):
+        for product in self:
+            product.google_shipping_label = "free"
+            for kv in product.all_kvs:
+                if kv.code == "internal.delivery.noweu":
+                    product.google_shipping_label = kv.value_id.code
+                    break
     
     @api.depends('all_kvs','all_kvs.text')
     def _compute_lead_time_in_stock(self):
