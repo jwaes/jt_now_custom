@@ -1,5 +1,7 @@
 import logging
+import re
 from odoo import api, fields, models
+from datetime import datetime, timedelta
 
 _logger = logging.getLogger(__name__)
 
@@ -13,9 +15,25 @@ class ProductProduct(models.Model):
     is_pickup_product = fields.Boolean(compute='_compute_is_pickup_product', string='Is pickup product')
     
     lead_time_in_stock = fields.Char(compute='_compute_lead_time_in_stock', string='Lead time in stock')
-    lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='lead_time_out_stock')
+    lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='Lead time out stock')
 
     google_shipping_label = fields.Char(compute='_compute_google_shipping_label', string='Google Shipping Label')
+
+    lead_date_out_stock_string = fields.Char(compute='_compute_lead_date_out_stock', string='Lead date out stock iso')
+    
+    @api.depends('lead_time_out_stock')
+    def _compute_lead_date_out_stock(self):
+        digit_pattern = r'\d'
+        for product in self:
+            match = re.search(digit_pattern, product.lead_time_out_stock)
+            weeks = 1
+            if match:
+                weeks = int(match.group())
+                _logger.info("MATCH : %s", weeks)
+            goal = datetime.now() + timedelta(weeks = weeks)
+            _logger.info("GOAL : %s", goal)
+            product.lead_date_out_stock_string = goal.isoformat()
+            
     
     @api.depends('all_kvs','all_kvs.text')
     def _compute_google_shipping_label(self):
