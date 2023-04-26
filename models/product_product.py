@@ -18,9 +18,17 @@ class ProductProduct(models.Model):
     lead_time_out_stock = fields.Char(compute='_compute_lead_time_out_stock', string='Lead time out stock')
 
     google_shipping_label = fields.Char(compute='_compute_google_shipping_label', string='Google Shipping Label')
+    google_return_policy_label = fields.Char(compute='_compute_google_return_policy_label', string='Google Return Policy Label')
 
     lead_date_out_stock_string = fields.Char(compute='_compute_lead_date_out_stock', string='Lead date out stock iso')
     
+    @api.depends('is_stock_product')
+    def _compute_google_return_policy_label(self):
+        for product in self:
+            product.google_return_policy_label = None
+            if not product.is_stock_product:
+                product.google_return_policy_label = "personalized"
+
     @api.depends('lead_time_out_stock')
     def _compute_lead_date_out_stock(self):
         digit_pattern = r'\d'
@@ -29,9 +37,9 @@ class ProductProduct(models.Model):
             weeks = 1
             if match:
                 weeks = int(match.group())
-                _logger.info("MATCH : %s", weeks)
+                _logger.debug("MATCH : %s", weeks)
             goal = datetime.now() + timedelta(weeks = weeks)
-            _logger.info("GOAL : %s", goal)
+            _logger.debug("GOAL : %s", goal)
             product.lead_date_out_stock_string = goal.isoformat()
             
     
