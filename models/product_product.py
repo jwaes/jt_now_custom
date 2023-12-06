@@ -84,7 +84,7 @@ class ProductProduct(models.Model):
             product.is_stock_product = False
             _logger.info("┌── %s ", product.name)
             for kv in product.all_kvs:
-                _logger.info("├─ %s : %s ", kv.code, kv.text)
+                # _logger.info("├─ %s : %s ", kv.code, kv.text)
                 if kv.code == "internal.stock":
                     _logger.info("└─ %s : %s", product.name, kv.value_id.code)
                     if kv.value_id.code == "stock":
