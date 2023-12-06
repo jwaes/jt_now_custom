@@ -38,12 +38,12 @@ class ProductTemplate(models.Model):
     @api.depends('tmpl_all_kvs')
     def _compute_is_custom_made_product(self):
         for tmpl in self:
+            tmpl.is_custom_made_product = False
             for kv in tmpl.tmpl_all_kvs:
                 if kv.code == "internal.stock":
                     if kv.value_id.code == "custom-made":
                         tmpl.is_custom_made_product = True
-                        return
-            tmpl.is_custom_made_product = False
+            
 
     @api.model
     def _get_dimension_uom_domain(self):
@@ -52,12 +52,12 @@ class ProductTemplate(models.Model):
     @api.depends('tmpl_all_kvs')
     def _compute_is_dealer_product(self):
         for tmpl in self:
+            tmpl.is_dealer_product = False
             for kv in tmpl.tmpl_all_kvs:
                 if kv.code == "internal.stock":
                     if kv.value_id.code == "dealer":
                         tmpl.is_dealer_product = True
-                        return
-            tmpl.is_dealer_product = False
+            
 
     def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False, parent_combination=False, only_template=False):
         combination_info = super(ProductTemplate, self)._get_combination_info(

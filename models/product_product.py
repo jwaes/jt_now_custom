@@ -95,13 +95,13 @@ class ProductProduct(models.Model):
 
     @api.depends('all_kvs')
     def _compute_is_pickup_product(self):
-        for product in self: 
+        for product in self:
+            product.is_pickup_product = False
             for kv in product.all_kvs:
                 if kv.code == "internal.delivery.noweu":
                     if kv.value_id.code == "pickup":
                         product.is_pickup_product = True
-                        return
-            product.is_pickup_product = False            
+                        
 
     @api.model
     def _get_dimension_uom_domain(self):
