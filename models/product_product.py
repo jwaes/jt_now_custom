@@ -81,16 +81,17 @@ class ProductProduct(models.Model):
     @api.depends('all_kvs')
     def _compute_is_stock_product(self):
         for product in self:
+            product.is_stock_product = False
             _logger.info("┌── %s ", product.name)
             for kv in product.all_kvs:
                 _logger.info("├─ %s : %s ", kv.code, kv.text)
                 if kv.code == "internal.stock":
-                    _logger.info("└─ %s : %s", product.name, kv.text)
+                    _logger.info("└─ %s : %s", product.name, kv.value_id.code)
                     if kv.value_id.code == "stock":
                         product.is_stock_product = True
                         _logger.info("└─ set is_stock_product = True")
-                        return
-            product.is_stock_product = False
+                        # return
+            
 
     @api.depends('all_kvs')
     def _compute_is_pickup_product(self):
