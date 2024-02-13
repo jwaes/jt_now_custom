@@ -14,10 +14,11 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '1.98',
+    'version': '1.105',
 
     # any module necessary for this one to work correctly
     'depends': [
+        'account',
         'base',
         'coupon',
         'documents',
@@ -26,6 +27,7 @@
         'website_sale',
         'website_sale_stock',
         'sale_management',
+        'sale_product_configurator',
         'crm',
         'project',
         'purchase',
@@ -41,13 +43,16 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'data/royalty_report_data.xml',
         "report/coupon_report_templates.xml",
         "report/coupon_report.xml",
         "report/purchase_quotation_templates.xml",
         "report/purchase_order_templates.xml",
         "report/sale_report_templates.xml",
+        "report/royalty_report_templates.xml",
         'wizard/coupon_generate_views.xml',
+        'wizard/royalty_report_wizard.xml',
         'views/coupon_views.xml',
         'views/snippets/s_video_plyr.xml',
         'views/snippets/snippets.xml',

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+            <record id="action_account_report_royalties" model="ir.actions.client">
+                <field name="name">Royalties</field>
+                <field name="tag">account_report</field>
+                <field name="context" eval="{'model': 'jt.now.report.royalties'}" />
+            </record>
+
+            <menuitem id="menu_action_account_report_royalties" name="Royalties" action="action_account_report_royalties" parent="account.account_reports_management_menu"/>
+    
+    </data>
+</odoo>

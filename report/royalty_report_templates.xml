@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_now_royalty_report" model="ir.actions.report">
+        <field name="name">NOW Royalty report</field>
+        <field name="model">jt.now.wizard.royalty.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jt_now_custom.royalty_report_pdf_template</field>
+        <field name="report_file">jt_now_custom.royalty_report_pdf_template</field>
+        <field name="print_report_name">(object.report_name)</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- <record
+        id="action_now_royalty_report"
+        model="jt.now.wizard.royalty.report"
+        string="PDF Report"
+        name="jt_now_custom.royalty_report_pdf_template"
+        file="jt_now_custom.royalty_report_pdf_template"
+        report_type="qweb-pdf"
+    />     -->
+
+    <template id="royalty_report_pdf_template">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <div class="oe_structure" />
+                    <h1>
+                        Royalty detail
+                    </h1>
+
+                    <div class="row">
+                        <div class="col-6"> Date from: <span t-esc="date_from" />
+                        </div>
+                        <div class="col-6"> For: <span t-out="royalty_value_id.name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6"> Date to: <span t-esc="date_to" />
+                        </div>
+                        <div class="col-6" />
+
+                    </div>
+                    <br />
+
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Bill</th>
+                                <th>Vendor</th>
+                                <th>Product</th>
+                                <th class="text-right">Qty</th>
+                                <th class="text-right">Price</th>
+                                <th class="text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="line">
+                                <tr>
+                                    <td>
+                                        <span t-field="line.date" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.move_name" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.partner_id.name" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_id.name" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.quantity" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_unit"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_subtotal" />
+                                    </td>
+                                </tr>
+                            </t>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6"></td>
+                                    <td class="text-right">
+                                        <span t-out="total"
+                                            t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                    </td>
+                                    <tr>
+                                        <td colspan="5" />
+                                        <td class="text-right"><span t-out="commission" />%</td>
+                                        <td class="text-right">
+                                            <span t-out="total_commission"
+                                                t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
+                                        </td>
+                                    </tr>
+                                </tr>
+                            </tfoot>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

@@ -6,6 +6,9 @@ from datetime import datetime, timedelta
 _logger = logging.getLogger(__name__)
 
 class ProductProduct(models.Model):
+
+    ROYALTY_CODE = 'internal.royalty'
+
     _inherit = "product.product"
     _order = 'websequence, priority desc, default_code, name, id'
     
@@ -21,6 +24,22 @@ class ProductProduct(models.Model):
     google_return_policy_label = fields.Char(compute='_compute_google_return_policy_label', string='Google Return Policy Label')
 
     lead_date_out_stock_string = fields.Char(compute='_compute_lead_date_out_stock', string='Lead date out stock iso')
+
+    royalty_kv_ids = fields.One2many('jt.property.kv', compute='_compute_royalty_kv_ids', string='Royalty KV Ids')
+
+    @api.depends('all_kvs','all_kvs.value_id')
+    def _compute_royalty_kv_ids(self):
+        # related_ids = []
+        # for kv in self.all_kvs:
+        #     if kv.code == "internal.royalty":
+        #         related_ids.append(kv.value_id.id)
+        # _logger.info("related ids %s ", related_ids)                
+        # self.royalty_value_ids.ids = related_ids
+        for record in self:
+            record.royalty_kv_ids = record.all_kvs.filtered(lambda kv: kv.code == self.ROYALTY_CODE)
+        # pass
+
+        
     
     @api.depends('is_stock_product')
     def _compute_google_return_policy_label(self):
