@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-jt_now_custom.access_jt_now_report_royalties,access_jt_now_report_royalties,jt_now_custom.model_jt_now_report_royalties,base.group_user,1,1,1,1
 jt_now_custom.access_jt_now_wizard_royalty_report,access_jt_now_wizard_royalty_report,jt_now_custom.model_jt_now_wizard_royalty_report,base.group_user,1,1,1,1

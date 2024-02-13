@@ -13,6 +13,7 @@ class MrpBom(models.Model):
 
 
     def update_royalty_properties(self):
+        roy_code = self.env['product.product'].ROYALTY_CODE
         for record in self:
             product = record.product_id
             if product:
@@ -21,9 +22,9 @@ class MrpBom(models.Model):
                     
                     for kv in line_product.all_kvs:
                         # _logger.info("├─ %s : %s ", kv.code, kv.text)
-                        if kv.code == ProductProduct.ROYALTY_CODE:
+                        if kv.code == roy_code:
 
-                            if kv.value_id not in product.property_kv_ids.filtered(lambda kv: kv.code == ProductProduct.ROYALTY_CODE).value_id:
+                            if kv.value_id not in product.property_kv_ids.filtered(lambda kv: kv.code == roy_code).value_id:
                                 _logger.info("No royalty property line yet in [%s] %s", line_product.default_code, line_product.name)                                
                                 # royalty_code = kv.value_id.code
                                 # product.lead_time_out_stock = kv.text
