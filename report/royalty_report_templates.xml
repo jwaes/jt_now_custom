@@ -30,13 +30,13 @@
                     </h1>
 
                     <div class="row">
-                        <div class="col-6"> Date from: <span t-esc="date_from" />
+                        <div class="col-6"> Date from: <span t-out="date_from" />
                         </div>
                         <div class="col-6"> For: <span t-out="royalty_value_id.name" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6"> Date to: <span t-esc="date_to" />
+                        <div class="col-6"> Date to: <span t-out="date_to" />
                         </div>
                         <div class="col-6" />
 

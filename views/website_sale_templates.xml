@@ -77,7 +77,7 @@
 
         <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="attributes">
             <attribute name="t-if">show_price</attribute>
-            <attribute name="t-esc">show_price</attribute>
+            <attribute name="t-out">show_price</attribute>
         </xpath>
         <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="after">
             <t t-if="not show_price"><span class="h5">&amp;nbsp;</span></t>
@@ -110,13 +110,13 @@
                 <t t-elif="stockprod.is_stock_product">
                     <span class="bubble mx-0 bubble_on_stock" title="on stock" modifiers="{}"></span>
                     on stock, ships in 
-                    <t t-esc="stockprod.lead_time_in_stock" />
+                    <t t-out="stockprod.lead_time_in_stock" />
                 </t>
             </t>
             <t t-else="">
                 <span class="bubble mx-0 bubble_out_stock" title="out of stock" modifiers="{}"></span>
                 ships in 
-                <t t-esc="stockprod.lead_time_out_stock" />
+                <t t-out="stockprod.lead_time_out_stock" />
             </t>
         </div>   
     </template>

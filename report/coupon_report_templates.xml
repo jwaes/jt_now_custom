@@ -24,11 +24,11 @@
                                 <img src="/jt_now_custom/static/src/img/logo_coupon_big.png" style="margin-bottom:40px; height:150px;" height="150"/>                                
                                 <h4 t-if="o.partner_id.name">
                                     Congratulations
-                                    <t t-esc="o.partner_id.name"/>,
+                                    <t t-out="o.partner_id.name"/>,
                                 </h4>
                                 <t t-set="text">on your next website order</t>
 <!--                                 
-                                <h4>Here is your benefit from <t t-esc="o.program_id.company_id.name"/>.</h4>
+                                <h4>Here is your benefit from <t t-out="o.program_id.company_id.name"/>.</h4>
                                 <br/> -->
                                 <t t-if="o.program_id.reward_type == 'discount'">
                                     <t t-set="trans_text">off %s</t>
@@ -55,34 +55,34 @@
                                 </t>
                                 <t t-if="o.program_id.reward_type == 'product'">
                                     <strong style="font-size: 55px; color: #875A7B">
-                                        <t t-esc="'get %s free %s' % (o.program_id.reward_product_quantity, o.program_id.reward_product_id.name)"/>
+                                        <t t-out="'get %s free %s' % (o.program_id.reward_product_quantity, o.program_id.reward_product_id.name)"/>
                                     </strong>
                                 </t>
                                 <t t-if="o.program_id.reward_type == 'free_shipping'">
                                     <strong style="font-size: 55px; color: #875A7B">get free shipping</strong>
                                 </t>
-                                <h1 class="font-weight-bold" style="font-size: 34px" t-esc="text"/>
+                                <h1 class="font-weight-bold" style="font-size: 34px" t-out="text"/>
                                 <br/>
                                 <h4 t-if="o.expiration_date">
                                     Use this benefit code before
                                     <span t-field="o.expiration_date" t-options='{"format": "yyyy-MM-d"}'/>
                                 </h4>
-                                <h4 t-if="o.dealer_id">Kindly offered to you by <t t-esc="o.dealer_id.name"/></h4>
+                                <h4 t-if="o.dealer_id">Kindly offered to you by <t t-out="o.dealer_id.name"/></h4>
                                 <h2 class="mt-4">
-                                    <strong class="bg-light" t-esc="o.code"></strong>
+                                    <strong class="bg-light" t-out="o.code"></strong>
                                 </h2>
-                                <h4>Use this benefit code during checkout on our website<br/><t t-esc="o.program_id.company_id.partner_id.website"/><br/>or scan the QR code below.</h4>
+                                <h4>Use this benefit code during checkout on our website<br/><t t-out="o.program_id.company_id.partner_id.website"/><br/>or scan the QR code below.</h4>
                                 <h4 t-if="o.program_id.rule_min_quantity > 1">
                                     <span>Minimum purchase of</span>
-                                    <strong t-esc="o.program_id.rule_min_quantity"/> <span>products</span>
+                                    <strong t-out="o.program_id.rule_min_quantity"/> <span>products</span>
                                 </h4>
                                 <h4 t-if="o.program_id.rule_minimum_amount">
                                     <span>Valid for purchase above</span>
-                                    <strong t-esc="o.program_id.rule_minimum_amount" t-options="{'widget': 'monetary', 'display_currency': o.program_id.currency_id}"/>
+                                    <strong t-out="o.program_id.rule_minimum_amount" t-options="{'widget': 'monetary', 'display_currency': o.program_id.currency_id}"/>
                                 </h4>
                                 <p t-if="display_specific_products">
                                     <small>
-                                        *Valid for following products: <t t-esc="', '.join(o.program_id.discount_specific_product_ids.mapped('name'))"/>
+                                        *Valid for following products: <t t-out="', '.join(o.program_id.discount_specific_product_ids.mapped('name'))"/>
                                     </small>
                                 </p>
                                 
