@@ -5,6 +5,7 @@ import re
 
 class RoyaltyReport(models.TransientModel):
     _name = 'jt.now.wizard.royalty.report'
+    _description = "Royalty report"
 
     period = fields.Selection([
         ('this_month', 'This month'),
@@ -65,6 +66,7 @@ class RoyaltyReport(models.TransientModel):
 
 class RoyaltyReportPDF(models.AbstractModel):
     _name = 'report.jt_now_custom.royalty_report_pdf_template'
+    _description = "Royalty report PDF"
 
     def _get_report_values(self, docids, data=None):
         domain = [
