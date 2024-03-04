@@ -12,10 +12,10 @@
 
     </template>
 
-    <template id="share_single" inherit_id="documents.share_single">
+    <!-- <template id="share_single" inherit_id="documents.share_single">
         <xpath expr="//div[hasclass('o_docs_single_container')]/div[hasclass('o_docs_single_actions')]/a" position="attributes">
             <attribute name="class" add="text-dark" separator=" "/>
         </xpath>
-    </template>
+    </template> -->
 
 </odoo>
