@@ -97,7 +97,6 @@
         <xpath expr="//div[1]" position="attributes">
             <attribute name="t-if">not product.is_dealer_product</attribute>
         </xpath>
-        <!-- <xpath expr="//div[hasclass('css_quantity')]" position="replace"/> -->
     </template>
 
     <template id="jt_now_custom.shop_product_single" name="Shop Product Single">
