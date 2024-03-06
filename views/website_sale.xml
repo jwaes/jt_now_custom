@@ -83,7 +83,7 @@
         </xpath>
     </template>     -->
 
-
+<!-- 
     <template id="jt_now_custom.shop_product_single" name="Shop Product Single">
         <t t-set="product_images" t-value="product_variant._get_images() if product_variant else product._get_images()" />
         <div class="product-image-single">
@@ -104,7 +104,7 @@
         <xpath expr="//t[@t-set='product_images']" position="attributes">
             <attribute name="t-value">product_variant._get_square_images() if product_variant else product._get_square_images()</attribute>
         </xpath>
-    </template>    
+    </template>     -->
 
     <!-- <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
         <xpath expr="//li" position="attributes">
