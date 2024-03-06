@@ -64,8 +64,8 @@
         "views/stock_picking_views.xml",
         "views/product_view.xml",
         "views/webclient_templates.xml",
-        "views/website_sale.xml",
-        "views/website_sale_templates.xml",
+        # "views/website_sale.xml",
+        # "views/website_sale_templates.xml",
     ],
     # only loaded in demonstration mode
     'demo': [
