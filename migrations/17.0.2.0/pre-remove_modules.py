@@ -8,6 +8,7 @@ _logger = logging.getLogger(__name__)
 def migrate(cr, version):
     
     modules_to_uninstall = [
+        'theme_now',
         'mollie_account_sync', 
         'payment_mollie_official', 
         'product_harmonized_system', 
