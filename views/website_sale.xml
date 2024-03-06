@@ -92,12 +92,7 @@
             </t>
         </xpath>
     </template>    
-<!-- 
-    <template id="product_quantity"  inherit_id="website_sale.product_quantity">
-        <xpath expr="//div[1]" position="attributes">
-            <attribute name="t-if">not product.is_dealer_product</attribute>
-        </xpath>
-    </template> -->
+
 
     <template id="jt_now_custom.shop_product_single" name="Shop Product Single">
         <t t-set="product_images" t-value="product_variant._get_images() if product_variant else product._get_images()" />
