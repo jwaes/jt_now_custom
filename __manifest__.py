@@ -85,8 +85,8 @@
         'web.assets_qweb': [
             'jt_now_custom/static/src/xml/*.xml',
         ],
-        'website.assets_wysiwyg': [
-            'jt_now_custom/static/src/snippets/s_video_plyr/options.js',
-        ],           
+        # 'website.assets_wysiwyg': [
+        #     'jt_now_custom/static/src/snippets/s_video_plyr/options.js',
+        # ],           
     },
 }
