@@ -78,10 +78,10 @@
         'web.assets_backend': [
             'jt_now_custom/static/src/css/documents.css',
         ],
-        'web.assets_frontend': [
-            'jt_now_custom/static/src/js/**/*',
-            'jt_now_custom/static/src/css/**/*',
-        ],        
+        # 'web.assets_frontend': [
+        #     'jt_now_custom/static/src/js/**/*',
+        #     'jt_now_custom/static/src/css/**/*',
+        # ],        
         'web.assets_qweb': [
             'jt_now_custom/static/src/xml/*.xml',
         ],
