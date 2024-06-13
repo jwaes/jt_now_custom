@@ -59,23 +59,22 @@ class ProductTemplate(models.Model):
                         tmpl.is_dealer_product = True
             
 
-    def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False, parent_combination=False, only_template=False):
+    def _get_combination_info(self, combination=False, product_id=False, add_qty=1, parent_combination=False, only_template=False):
         combination_info = super(ProductTemplate, self)._get_combination_info(
             combination=combination,
             product_id=product_id,
             add_qty=add_qty,
-            pricelist=pricelist,
             parent_combination=parent_combination,
             only_template=only_template,
         )
         self.ensure_one()
 
-        current_website = False
+        website = self.env['website'].get_current_website().with_context(self.env.context)
 
-        if self.env.context.get('website_id'):
+        if website:
             context = dict(self.env.context, ** {
                 'quantity': self.env.context.get('quantity', add_qty),
-                'pricelist': pricelist and pricelist.id
+                'pricelist': website.pricelist_id.id
             })
 
             product = (self.env['product.product'].browse(combination_info['product_id']) or self)   
