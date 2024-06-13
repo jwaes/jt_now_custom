@@ -27,7 +27,7 @@ class ProductProduct(models.Model):
 
     royalty_kv_ids = fields.One2many('jt.property.kv', compute='_compute_royalty_kv_ids', string='Royalty KV Ids')
 
-    @api.depends('all_kvs','all_kvs.value_id')
+    @api.depends('all_kvs')
     def _compute_royalty_kv_ids(self):
         # related_ids = []
         # for kv in self.all_kvs:

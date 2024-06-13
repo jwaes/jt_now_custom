@@ -15,9 +15,9 @@ def migrate(cr, version):
     ]
 
     modules_to_remove = [
-        'product_harmonized_system_delivery', 
-        'product_harmonized_system_stock',
-        'product_harmonized_system', 
+        # 'product_harmonized_system_delivery', 
+        # 'product_harmonized_system_stock',
+        # 'product_harmonized_system', 
     ]
 
     for candidate in modules_to_uninstall:
