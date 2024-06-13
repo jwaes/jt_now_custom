@@ -11,14 +11,22 @@ def migrate(cr, version):
         'theme_now',
         'mollie_account_sync', 
         'payment_mollie_official', 
-        'product_harmonized_system', 
+
+    ]
+
+    modules_to_remove = [
         'product_harmonized_system_delivery', 
-        'product_harmonized_system_stock'
+        'product_harmonized_system_stock',
+        'product_harmonized_system', 
     ]
 
     for candidate in modules_to_uninstall:
         _logger.info("About to uninstall module %s", candidate)
-        util.remove_module(cr,candidate)
+        util.uninstall_module(cr,candidate)
+
+    for candidate in modules_to_remove:
+        _logger.info("About to remove module %s", candidate)
+        util.remove_module(cr,candidate)        
 
     
 
