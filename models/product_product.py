@@ -62,7 +62,7 @@ class ProductProduct(models.Model):
             product.lead_date_out_stock_string = goal.isoformat()
             
     
-    @api.depends('all_kvs','all_kvs.text')
+    @api.depends('all_kvs')
     def _compute_google_shipping_label(self):
         for product in self:
             product.google_shipping_label = "free"
@@ -71,7 +71,7 @@ class ProductProduct(models.Model):
                     product.google_shipping_label = kv.value_id.code
                     break
     
-    @api.depends('all_kvs','all_kvs.text')
+    @api.depends('all_kvs')
     def _compute_lead_time_in_stock(self):
         for product in self:
             # _logger.info("┌── %s ", product.name)
@@ -84,7 +84,7 @@ class ProductProduct(models.Model):
                     break
 
     
-    @api.depends('all_kvs', 'all_kvs.text')
+    @api.depends('all_kvs')
     def _compute_lead_time_out_stock(self):
         for product in self:
             # _logger.info("┌── %s ", product.name)
