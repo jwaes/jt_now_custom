@@ -10,6 +10,6 @@ class Http(models.AbstractModel):
     def get_frontend_session_info(self):
         session_info = super(Http, self).get_frontend_session_info()
         session_info.update({
-            'geoip_country_name': request.session.get('geoip', {}).get('country_name'),
+            'geoip_country_name': request.geoip.country.name,
         })
         return session_info    
