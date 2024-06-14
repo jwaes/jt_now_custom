@@ -1,43 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- <template id="product" inherit_id="website_sale.product">
-        <xpath expr="//form" position="attributes">
-            <attribute name="t-if">product._is_add_to_cart_possible() and not
-    product.is_dealer_product</attribute>
-        </xpath>
-        <xpath expr="//form/following-sibling::p[1]" position="after">
-            <div t-elif="product.is_dealer_product" class="js_product js_main_product">
-                <t t-call="website_sale.product_price" />
-                <p class="alert alert-info mdi mdi-alert mdi-storefront-outline">This product is available through
-    our <a href="/retailers">retailers</a>.</p>                
-            </div>
-        </xpath>
-    </template> -->
-
-    <!-- <template id="product2" inherit_id="website_sale.product">
-
-        <xpath expr="//div[@id='add_to_cart_wrap']/a" position="attributes">
-            <attribute name="t-if">not product.is_dealer_product</attribute>
-        </xpath>
-
-        <xpath expr="//p[@t-field='product.description_sale']" position="after">
-            <t t-if="product.is_custom_made_product">
-                <p id="custom_made_depens_dimensions" class="mt-5 mb-3">
-                    <b>price depends on the dimensions</b>
-                </p>
-                <hr/>
-                <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80"/>
-
-            </t>
-        </xpath>
-
-        <xpath expr="//div[@id='product_attributes_simple']" position="attributes">
-            <attribute name="class" separator=" " add="mt-5"/>
-        </xpath>
-
-    </template> -->
-
     <template id="find_retailer">
         <div id="find_retailer" t-if="product.is_dealer_product or product.is_custom_made_product"
             class="mt-3 pt-2 o_not_editable">
@@ -86,13 +49,8 @@
         </xpath>
     </template>
 
-    <!-- <template id="product_quantity"  inherit_id="website_sale.product_quantity">
-        <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
-            <attribute name="t-if">not product.is_dealer_product</attribute>
-        </xpath>
-    </template> -->
 
-    <template id="jt_now_custom.shop_product_single" name="Shop Product Single">
+    <template id="shop_product_single" name="Shop Product Single">
         <t t-set="product_images"
             t-value="product_variant._get_images() if product_variant else product._get_images()" />
         <div class="product-image-single">
