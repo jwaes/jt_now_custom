@@ -71,7 +71,7 @@
     <template id="products_item" inherit_id="website_sale.products_item">
 
         <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="before">
-            <t t-set="combination_info" t-value="product._get_combination_info(only_template=False, add_qty=add_qty or 1, pricelist=pricelist)" />
+            <t t-set="combination_info" t-value="product._get_combination_info(only_template=False, add_qty=add_qty or 1)" />
             <t t-set="show_price" t-value="combination_info['total_included'] if combination_info['tax_display'] == 'total_included' else combination_info['total_excluded']" />
         </xpath>
 
