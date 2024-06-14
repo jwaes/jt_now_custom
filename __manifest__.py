@@ -50,7 +50,6 @@
         "report/purchase_order_templates.xml",
         "report/sale_report_templates.xml",
         "report/royalty_report_templates.xml",
-        'wizard/coupon_generate_views.xml',
         'wizard/royalty_report_wizard.xml',
         # 'views/coupon_views.xml',
         'views/snippets/s_video_plyr.xml',
