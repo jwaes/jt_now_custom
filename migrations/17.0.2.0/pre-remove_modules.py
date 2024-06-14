@@ -8,7 +8,8 @@ _logger = logging.getLogger(__name__)
 def migrate(cr, version):
     
     modules_to_uninstall = [
-        'mollie_account_sync', 
+        'mollie_account_sync',
+        'jt_website_sale_vatprices',
     ]
 
     for candidate in modules_to_uninstall:

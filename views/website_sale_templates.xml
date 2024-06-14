@@ -47,8 +47,6 @@
     </template>
 
     <template id="website_sale_product_stockinfo">
-        <!-- website product -->
-        <!-- <t t-if="not product_variant.is_stock_product"> -->
             <t t-call="jt_now_custom.stock_bubble">
                 <t t-set="stockprod" t-value="product_variant"/>
                 <t t-set="show_pickup">True</t>
@@ -69,19 +67,6 @@
     </template>
 
     <template id="products_item" inherit_id="website_sale.products_item">
-
-        <!-- <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="before">
-            <t t-set="combination_info" t-value="product._get_combination_info(only_template=False, add_qty=add_qty or 1)" />
-            <t t-set="show_price" t-value="combination_info['total_included'] if combination_info['tax_display'] == 'total_included' else combination_info['total_excluded']" />
-        </xpath>
-
-        <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="attributes">
-            <attribute name="t-if">show_price</attribute>
-            <attribute name="t-out">show_price</attribute>
-        </xpath>
-        <xpath expr="//div[hasclass('product_price')]//span[hasclass('h5')]" position="after">
-            <t t-if="not show_price"><span class="h5">&amp;nbsp;</span></t>
-        </xpath>         -->
 
         <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
             <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>
