@@ -1,69 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- <template id="product" inherit_id="website_sale.product">
+        <xpath expr="//form" position="attributes">
+            <attribute name="t-if">product._is_add_to_cart_possible() and not product.is_dealer_product</attribute>
+        </xpath>
+        <xpath expr="//form/following-sibling::p[1]" position="after">
+            <div t-elif="product.is_dealer_product" class="js_product js_main_product">
+                <t t-call="website_sale.product_price" />
+                <p class="alert alert-info mdi mdi-alert mdi-storefront-outline">This product is available through our <a href="/retailers">retailers</a>.</p>                
+            </div>
+        </xpath>
+    </template> -->
+
+    <template id="product2" inherit_id="website_sale.product" priority="4">
+
+        <xpath expr="//div[@id='add_to_cart_wrap']/a" position="attributes">
+            <attribute name="t-if">not product.is_dealer_product</attribute>
+        </xpath>
+
+        <xpath expr="//p[@t-field='product.description_sale']" position="after">
+            <t t-if="product.is_custom_made_product">
+                <p id="custom_made_depens_dimensions" class="mt-5 mb-3">
+                    <b>price depends on the dimensions</b>
+                </p>
+                <hr/>
+                <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80"/>
+                <!-- <p>                   
+                    <a class="btn btn-primary w-50" href="/retailers">quote request</a>
+                </p>  -->
+            </t>
+        </xpath>
+
+        <!-- <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/> -->
+
+        <!-- hide the no valid combination message -->
+        <xpath expr="//p[@t-else='']" position="replace"/>
+
+        <xpath expr="//div[@id='product_attributes_simple']" postion="before">
+            <!-- <t t-call="jt_now_custom.stock_bubble" t-if="product.is_custom_made_product">
+                <t t-set="show_pickup">False</t>
+            </t>       -->
+            <!-- <t t-call="jt_now_custom.personalized"/>       -->
+            <t t-call="jt_now_custom.find_retailer"/>
+            <!-- <t t-call="jt_now_custom.professional_recruitement"/> -->
+        </xpath>
+
+        <xpath expr="//div[@id='product_attributes_simple']" position="attributes">
+            <attribute name="class" separator=" " add="mt-5"/>
+        </xpath>
+
+    </template>
+
     <template id="find_retailer">
-        <div id="find_retailer" t-if="product.is_dealer_product or product.is_custom_made_product"
-            class="mt-3 pt-2 o_not_editable">
-            <hr />
-            <p>
+        <div id="find_retailer" t-if="product.is_dealer_product or product.is_custom_made_product" class="mt-3 pt-2 o_not_editable">
+            <hr/>
+            <p >
                 This product is available through our retailers.
             </p>
-            <p>
+            <p >                   
                 <a class="btn btn-secondary w-50" href="/retailers">find local retailer</a>
-            </p>
-        </div>
+            </p>             
+        </div>   
     </template>
 
     <template id="professional_recruitement">
-        <div id="professional_recruitement" class="mt-3 pt-2 o_not_editable"
-            t-if="product.is_custom_made_product or product.is_dealer_product">
-            <hr />
-            <p>
+        <div id="professional_recruitement" class="mt-3 pt-2 o_not_editable" t-if="product.is_custom_made_product or product.is_dealer_product">
+            <hr/>
+            <p >
                 Are you a professional?
             </p>
             <p>
-                <a href="/my/home">Sign up</a> or <a href="/contact">get in touch</a> with us for
-                more information about our trade conditions and project support. </p>
+                <a href="/my/home">Sign up</a> or <a href="/contact">get in touch</a> with us for more information about our trade conditions and project support.
+            </p>
         </div>
     </template>
 
-    <template id="professional_recruitement_card"
-        inherit_id="jt_product_properties_website.website_sale_product">
+    <template id="professional_recruitement_card" inherit_id="jt_product_properties_website.website_sale_product">
         <xpath expr="//div[hasclass('card')]" position="before">
             <t t-if="product.is_custom_made_product or product.is_dealer_product">
                 <div class="card bg-white" data-name="Item">
-                    <a href="#" t-attf-data-target="#myCollapseTab{{uniq}}_dim" role="tab"
-                        data-toggle="collapse" aria-expanded="false"
-                        class="card-header s_faq_collapse_right_icon">Are you a professional?</a>
-                    <div t-attf-id="myCollapseTab{{uniq}}_dim" class="collapse show"
-                        data-parent="#myCollapse" role="tabpanel">
+                    <a href="#" t-attf-data-target="#myCollapseTab{{uniq}}_dim" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header s_faq_collapse_right_icon">Are you a professional?</a>
+                    <div t-attf-id="myCollapseTab{{uniq}}_dim" class="collapse show" data-parent="#myCollapse" role="tabpanel">
                         <div class="card-body">
                             <p>
-                                <a href="/my/home">Sign up</a> or <a href="/contact">get in touch</a>
-                                with us for more information about our trade conditions and project
-                                support. </p>
+                                <a href="/my/home">Sign up</a> or <a href="/contact">get in touch</a> with us for more information about our trade conditions and project support.
+                            </p>
                         </div>
                     </div>
                 </div>
             </t>
         </xpath>
+    </template>    
+
+    <template id="product_quantity"  inherit_id="website_sale.product_quantity">
+        <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
+            <attribute name="t-if">not product.is_dealer_product</attribute>
+        </xpath>
+        <!-- <xpath expr="//div[hasclass('css_quantity')]" position="replace"/> -->
     </template>
 
-
-    <template id="shop_product_single" name="Shop Product Single">
-        <t t-set="product_images"
-            t-value="product_variant._get_images() if product_variant else product._get_images()" />
+    <template id="jt_now_custom.shop_product_single" name="Shop Product Single">
+        <t t-set="product_images" t-value="product_variant._get_images() if product_variant else product._get_images()" />
         <div class="product-image-single">
             <t t-foreach="product_images" t-as="product_image">
                 <t t-if="product_image_first">
 
-                    <div t-if="product_image._name == 'product.image' and product_image.embed_code"
-                        class="d-flex align-items-center justify-content-center h-100 embed-responsive embed-responsive-16by9">
+                    <div t-if="product_image._name == 'product.image' and product_image.embed_code" class="d-flex align-items-center justify-content-center h-100 embed-responsive embed-responsive-16by9">
                         <t t-out="product_image.embed_code" />
                     </div>
-                    <div t-else="" t-field="product_image.image_1920"
-                        class="d-flex align-items-center justify-content-center h-100"
-                        t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920", "itemprop": "image"}' />
+                    <div t-else="" t-field="product_image.image_1920" class="d-flex align-items-center justify-content-center h-100" t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920", "itemprop": "image"}' />
 
                 </t>
             </t>
@@ -72,16 +118,15 @@
 
     <template id="shop_product_carousel_square" inherit_id="website_sale.shop_product_carousel">
         <xpath expr="//t[@t-set='product_images']" position="attributes">
-            <attribute name="t-value">product_variant._get_square_images() if product_variant else
-                product._get_square_images()</attribute>
+            <attribute name="t-value">product_variant._get_square_images() if product_variant else product._get_square_images()</attribute>
         </xpath>
-    </template>
+    </template>    
 
-    <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
+    <!-- <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
         <xpath expr="//li" position="attributes">
             <attribute name="t-if">product_image.is_image_square</attribute>
         </xpath>
-    </template>
+    </template> -->
 
 
 </odoo>
