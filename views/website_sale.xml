@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- <template id="product" inherit_id="website_sale.product">
-        <xpath expr="//form" position="attributes">
-            <attribute name="t-if">product._is_add_to_cart_possible() and not product.is_dealer_product</attribute>
-        </xpath>
-        <xpath expr="//form/following-sibling::p[1]" position="after">
-            <div t-elif="product.is_dealer_product" class="js_product js_main_product">
-                <t t-call="website_sale.product_price" />
-                <p class="alert alert-info mdi mdi-alert mdi-storefront-outline">This product is available through our <a href="/retailers">retailers</a>.</p>                
-            </div>
-        </xpath>
-    </template> -->
-
     <template id="product2" inherit_id="website_sale.product" priority="4">
 
         <xpath expr="//div[@id='add_to_cart_wrap']/a" position="attributes">
@@ -26,24 +14,16 @@
                 </p>
                 <hr/>
                 <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80"/>
-                <!-- <p>                   
-                    <a class="btn btn-primary w-50" href="/retailers">quote request</a>
-                </p>  -->
+
             </t>
         </xpath>
 
-        <!-- <xpath expr="//section[@id='product_detail']//t[@t-call='website_sale.search']" position="replace"/> -->
 
-        <!-- hide the no valid combination message -->
         <xpath expr="//p[@t-else='']" position="replace"/>
 
         <xpath expr="//div[@id='product_attributes_simple']" postion="before">
-            <!-- <t t-call="jt_now_custom.stock_bubble" t-if="product.is_custom_made_product">
-                <t t-set="show_pickup">False</t>
-            </t>       -->
-            <!-- <t t-call="jt_now_custom.personalized"/>       -->
+
             <t t-call="jt_now_custom.find_retailer"/>
-            <!-- <t t-call="jt_now_custom.professional_recruitement"/> -->
         </xpath>
 
         <xpath expr="//div[@id='product_attributes_simple']" position="attributes">
@@ -93,12 +73,7 @@
         </xpath>
     </template>    
 
-    <template id="product_quantity"  inherit_id="website_sale.product_quantity">
-        <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
-            <attribute name="t-if">not product.is_dealer_product</attribute>
-        </xpath>
-        <!-- <xpath expr="//div[hasclass('css_quantity')]" position="replace"/> -->
-    </template>
+
 
     <template id="jt_now_custom.shop_product_single" name="Shop Product Single">
         <t t-set="product_images" t-value="product_variant._get_images() if product_variant else product._get_images()" />
@@ -120,13 +95,7 @@
         <xpath expr="//t[@t-set='product_images']" position="attributes">
             <attribute name="t-value">product_variant._get_square_images() if product_variant else product._get_square_images()</attribute>
         </xpath>
-    </template>    
-
-    <!-- <template id="carousel_product_indicators" inherit_id="website_sale.carousel_product_indicators">
-        <xpath expr="//li" position="attributes">
-            <attribute name="t-if">product_image.is_image_square</attribute>
-        </xpath>
-    </template> -->
+    </template>
 
 
 </odoo>
