@@ -94,7 +94,6 @@
     </template>    
 
     <template id="product_quantity"  inherit_id="website_sale.product_quantity">
-        <!-- <xpath expr="//div[hasclass('css_quantity')]" position="attributes"> -->
         <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
             <attribute name="t-if">not product.is_dealer_product</attribute>
         </xpath>
