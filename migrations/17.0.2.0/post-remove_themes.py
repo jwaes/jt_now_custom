@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 def migrate(cr, version):
     
     themes_to_uninstall = [
-        'theme_now',
+        # 'theme_now',
     ]
 
     for candidate in themes_to_uninstall:
