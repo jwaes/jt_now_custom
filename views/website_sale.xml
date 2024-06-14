@@ -92,8 +92,8 @@
     </template>
 
     <template id="shop_product_carousel_square" inherit_id="website_sale.shop_product_carousel">
-        <xpath expr="//t[@t-set='product_images']" position="attributes">
-            <attribute name="t-value">product_variant._get_square_images() if product_variant else product._get_square_images()</attribute>
+        <xpath expr="//div[@id='o-carousel-product']" position="before">
+            <t t-set="product_images" t-value="product_variant._get_square_images() if product_variant else product._get_square_images()"/>
         </xpath>
     </template>
 

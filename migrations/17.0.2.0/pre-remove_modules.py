@@ -21,5 +21,6 @@ def migrate(cr, version):
 
     util.remove_view(cr, xml_id='jt_now_custom.product2')
     util.remove_view(cr, xml_id='jt_now_custom.product_quantity')
+    util.remove_view(cr, xml_id='jt_now_custom.shop_product_carousel_square')
     
 
