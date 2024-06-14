@@ -13,13 +13,13 @@ def migrate(cr, version):
 
     for candidate in modules_to_uninstall:
         _logger.info("About to uninstall module %s", candidate)
-        util.modules.uninstall_module(cr,candidate)
+        util.uninstall_module(cr,candidate)
 
     # for candidate in themes_to_uninstall:
     #     _logger.info("About to uninstall theme %s", candidate)
     #     util.uninstall_theme(cr,candidate)
 
-    util.records.remove_view(cr, xml_id='product2')
-    util.records.remove_view(cr, xml_id='product_quantity')
+    util.remove_view(cr, xml_id='product2')
+    util.remove_view(cr, xml_id='product_quantity')
     
 
