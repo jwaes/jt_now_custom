@@ -59,7 +59,6 @@
         "views/ir_qweb_widget_templates.xml",
         "views/portal_templates.xml",
         "views/res_partner_views.xml",
-        "views/sale_order_views.xml",
         "views/stock_picking_views.xml",
         "views/product_view.xml",
         "views/webclient_templates.xml",
