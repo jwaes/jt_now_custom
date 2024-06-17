@@ -24,7 +24,7 @@ class RoyaltyReport(models.TransientModel):
     
     @api.depends('date_from', 'date_to', 'royalty_value_id')
     def _compute_report_name(self):
-        pattern = r"[^0-9a-zA-Z\s]+"
+        pattern = r'[^0-9a-zA-Z\s]+'
         roy = re.sub(pattern, "", self.royalty_value_id.name)
         report_name = 'RoyaltyReport_{date_from}_{date_to}_{roy}'.format(date_from=self.date_from, date_to=self.date_to, roy=roy)
 
