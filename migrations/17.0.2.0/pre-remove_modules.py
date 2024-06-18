@@ -12,8 +12,8 @@ def migrate(cr, version):
         'jt_website_sale_vatprices',
         # 'jt_documents_product',
         # 'jt_documents_website',
-        # 'jt_account_sepa',
-        # 'jt_invoice_cashdiscount',
+        'jt_account_sepa',
+        'jt_invoice_cashdiscount',
     ]
 
     for candidate in modules_to_uninstall:
@@ -23,6 +23,5 @@ def migrate(cr, version):
     util.remove_view(cr, xml_id='jt_now_custom.product2')
     util.remove_view(cr, xml_id='jt_now_custom.product_quantity')
     util.remove_view(cr, xml_id='jt_now_custom.shop_product_carousel_square')
-    util.remove_view(cr, xml_id='theme_now.navbar')
     
 
