@@ -10,8 +10,10 @@ def migrate(cr, version):
     modules_to_uninstall = [
         'mollie_account_sync',
         'jt_website_sale_vatprices',
-        'jt_documents_product',
-        'jt_documents_website',
+        # 'jt_documents_product',
+        # 'jt_documents_website',
+        # 'jt_account_sepa',
+        # 'jt_invoice_cashdiscount',
     ]
 
     for candidate in modules_to_uninstall:
