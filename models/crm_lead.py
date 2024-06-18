@@ -28,7 +28,7 @@ class CrmLead(models.Model):
             }
             sale_order = self.env["sale.order"].create(sale_order_vals)
 
-            dropship_route = self.env['stock.location.route'].search([('name', '=', 'Dropship')])
+            dropship_route = self.env['stock.route'].search([('name', '=', 'Dropship')])
 
             for task in self.task_ids:
                 product = task.product_id
