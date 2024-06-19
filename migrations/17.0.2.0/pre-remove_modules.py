@@ -15,6 +15,7 @@ def migrate(cr, version):
         'jt_account_sepa',
         'jt_invoice_cashdiscount',
         'jt_stock_subcontracting',
+        'jt_webeditor_extras',
     ]
 
     for candidate in modules_to_uninstall:

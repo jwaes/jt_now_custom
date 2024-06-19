@@ -15,3 +15,6 @@ def migrate(cr, version):
         _logger.info("About to uninstall module %s", candidate)
         util.uninstall_module(cr,candidate)
 
+
+    util.uninstall_theme(cr, 'theme_now')
+
