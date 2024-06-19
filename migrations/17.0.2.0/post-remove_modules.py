@@ -16,5 +16,5 @@ def migrate(cr, version):
         util.uninstall_module(cr,candidate)
 
 
-    util.uninstall_theme(cr, 'theme_now')
+    util.remove_theme(cr, 'theme_now')
 
