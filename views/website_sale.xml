@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="product2" inherit_id="website_sale.product" priority="4">
-
-        <!-- <xpath expr="//div[@id='add_to_cart_wrap']/a" position="attributes">
-            <attribute name="t-if">not product.is_dealer_product</attribute>
-        </xpath> -->
-
-
-        <!-- <xpath expr="//p[@t-else='']" position="replace"/> -->
+    <template id="jt_now_custom.product3" inherit_id="website_sale.product">
 
         <xpath expr="//div[@id='product_attributes_simple']" postion="before">
             <t t-call="jt_now_custom.find_retailer"/>
         </xpath>
 
-        <!-- <xpath expr="//div[@id='product_attributes_simple']" position="attributes">
-            <attribute name="class" separator=" " add="mt-5"/>
-        </xpath> -->
 
     </template>
 
-    <template id="find_retailer">
+    <template id="jt_now_custom.find_retailer">
         <div id="find_retailer" t-if="product.is_dealer_product or product.is_custom_made_product" class="mt-3 pt-2 o_not_editable">
             <hr/>
             <p >
