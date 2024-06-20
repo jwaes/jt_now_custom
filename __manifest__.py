@@ -52,8 +52,8 @@
         "report/royalty_report_templates.xml",
         'wizard/royalty_report_wizard.xml',
         # 'views/coupon_views.xml',
-        'views/snippets/s_video_plyr.xml',
-        'views/snippets/snippets.xml',
+        # 'views/snippets/s_video_plyr.xml',
+        # 'views/snippets/snippets.xml',
         "views/crm_lead_views.xml",
         "views/documents_templates.xml",
         "views/ir_qweb_widget_templates.xml",
@@ -70,19 +70,18 @@
     ],
 
     'assets': {
-        'web._assets_primary_variables': [
-            'jt_now_custom/static/src/legacy/scss/primary_variables.scss',
-        ],
+        # 'web._assets_primary_variables': [
+        #     'jt_now_custom/static/src/legacy/scss/primary_variables.scss',
+        # ],
         'web.assets_backend': [
             'jt_now_custom/static/src/css/documents.css',
         ],
-        # 'web.assets_frontend': [
-        #     'jt_now_custom/static/src/js/**/*',
-        #     'jt_now_custom/static/src/css/**/*',
-        # ],        
-        'web.assets_qweb': [
-            'jt_now_custom/static/src/xml/*.xml',
-        ],
+        'web.assets_frontend': [
+            'jt_now_custom/static/src/**/*',
+        ],        
+        # 'web.assets_qweb': [
+        #     'jt_now_custom/static/src/xml/*.xml',
+        # ],
         # 'website.assets_wysiwyg': [
         #     'jt_now_custom/static/src/snippets/s_video_plyr/options.js',
         # ],           
