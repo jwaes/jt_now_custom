@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="website_sale_product" inherit_id="jt_product_properties_website.website_sale_product">
+    <!-- <template id="website_sale_product" inherit_id="jt_product_properties_website.website_sale_product">
         <xpath expr="//div[hasclass('card')]" position="after">
             <t t-if="product_variant.product_wdh">
                 <div class="card bg-white" data-name="Item">
@@ -14,19 +14,18 @@
                 </div>
             </t>
         </xpath>
-    </template>
+    </template> -->
 
-    <template id="product" inherit_id="website_sale.product">
+    <!-- <template id="product" inherit_id="website_sale.product">
         <xpath expr="//div[@id='add_to_cart_wrap']" position="after">
             <div class="product_stockinfo o_not_editable mt-3" style="display:none;" />
         </xpath>
 
-        <!-- breadcrumb -->
         <xpath expr="//section/div[hasclass('row')]/div[1]" position="attributes">
             <attribute name="class" separator=" " add="col-lg-8" remove="col-lg-6" />
         </xpath>
 
-        <!-- searchbox -->
+
         <xpath expr="//section/div[hasclass('row')]/div[2]" position="attributes">
             <attribute name="class" separator=" " add="col-lg-4 d-none" remove="col-lg-6" />
         </xpath>
@@ -39,12 +38,11 @@
                     </li>
                 </t>
             </t>
-        </xpath>
-        <!-- Remove cart icon -->
+
         <xpath expr="//a[@id='add_to_cart']/i" position="attributes">
             <attribute name="class" separator=" " add="d-none"/>
         </xpath>
-    </template>
+    </template> -->
 
     <template id="website_sale_product_stockinfo">
             <t t-call="jt_now_custom.stock_bubble">
@@ -152,10 +150,10 @@
         </xpath>
     </template> -->
 
-    <template id="products" inherit_id="website_sale.products">
+    <!-- <template id="products" inherit_id="website_sale.products">
         <xpath expr="//div[hasclass('products_header')]" position="attributes">
             <attribute name="class" separator=" " add="d-none" />
         </xpath>
-    </template>
+    </template> -->
 
 </odoo>

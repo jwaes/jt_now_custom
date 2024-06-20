@@ -3,32 +3,20 @@
 
     <template id="product2" inherit_id="website_sale.product" priority="4">
 
-        <xpath expr="//div[@id='add_to_cart_wrap']/a" position="attributes">
+        <!-- <xpath expr="//div[@id='add_to_cart_wrap']/a" position="attributes">
             <attribute name="t-if">not product.is_dealer_product</attribute>
-        </xpath>
-
-        <xpath expr="//p[@t-field='product.description_sale']" position="after">
-            <t t-if="product.is_custom_made_product">
-                <p id="custom_made_depens_dimensions" class="mt-5 mb-3">
-                    <b>price depends on the dimensions</b>
-                </p>
-                <hr/>
-                <img src="/jt_now_custom/static/src/img/custom_made_rond.png" height="80"/>
-
-            </t>
-        </xpath>
+        </xpath> -->
 
 
-        <xpath expr="//p[@t-else='']" position="replace"/>
+        <!-- <xpath expr="//p[@t-else='']" position="replace"/> -->
 
         <xpath expr="//div[@id='product_attributes_simple']" postion="before">
-
             <t t-call="jt_now_custom.find_retailer"/>
         </xpath>
 
-        <xpath expr="//div[@id='product_attributes_simple']" position="attributes">
+        <!-- <xpath expr="//div[@id='product_attributes_simple']" position="attributes">
             <attribute name="class" separator=" " add="mt-5"/>
-        </xpath>
+        </xpath> -->
 
     </template>
 

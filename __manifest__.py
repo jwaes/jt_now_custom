@@ -35,7 +35,7 @@
         'jt_mrp_otf',
         'jt_lead_task',
         'jt_product_properties',
-        'jt_product_properties_website',
+        # 'jt_product_properties_website',
         'jt_image_tools',
         # 'jt_sale_order_line_codecolumn',
         # 'jt_website_sale_vatprices',
