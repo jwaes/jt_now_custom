@@ -2,11 +2,11 @@
 <odoo>
 
     <template id="jt_now_custom.product3" inherit_id="website_sale.product">
-
+<!-- 
         <xpath expr="//div[@id='product_attributes_simple']" postion="before">
             <t t-call="jt_now_custom.find_retailer"/>
         </xpath>
-
+ -->
 
     </template>
 
@@ -51,10 +51,10 @@
         </xpath>
     </template>    
 
-    <template id="jt_now_custom.product_quantity"  inherit_id="website_sale.product_quantity">
-        <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
+    <template id="jt_now_custom.product_quantity3"  inherit_id="website_sale.product_quantity">
+        <!-- <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
             <attribute name="t-if">not product.is_dealer_product</attribute>
-        </xpath>
+        </xpath> -->
     </template>
 
     <template id="jt_now_custom.shop_product_single" name="Shop Product Single">
