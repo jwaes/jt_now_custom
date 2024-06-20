@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
     <t t-inherit="website_sale_stock.product_availability" t-inherit-mode="extension">
-        <xpath expr="//div[@id='out_of_stock_message']" position="inner">
+        <xpath expr="//div[@id='out_of_stock_message']" position="inside">
 
             <t t-if='has_out_of_stock_message' t-out='out_of_stock_message'/>
             <t t-else="">Made especially for you, ships in 8 weeks.</t>
             <t t-elif="!allow_out_of_stock_order">Out of Stock</t>
         </xpath>
-        <xpath expr="//div[@id='threshold_message']" position="inner">
+        <xpath expr="//div[@id='threshold_message']" position="inside">
             <p>This product ships within a week.</p>
         </xpath>
     </t>
