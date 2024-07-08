@@ -1,0 +1,20 @@
+.stock_info {
+    margin-top: 1rem;
+}
+
+.bubble {
+    display: inline-block;
+    height: 0.75rem;
+    width: 0.75rem;
+    border-radius: 50% !important;
+    margin-right: 0.3rem !important;
+    margin-bottom: -0.1rem;
+}
+
+.bubble_on_stock {
+    background-color: #688e2b;
+}
+
+.bubble_out_stock {
+    background-color: #8788b8;
+}
