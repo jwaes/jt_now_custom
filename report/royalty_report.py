@@ -43,7 +43,7 @@ class RoyaltyReportPDF(models.AbstractModel):
         _logger.info('after filtered')
         lines = lines.sorted(key=lambda k: k.date and k.move_name)
         _logger.info('after sorted')
-        _logger.info('lines ', str(len(lines)))
+        _logger.info('lines %s ', len(lines))
         total = sum(lines.mapped('price_subtotal'))
         commission = data.get('commission')
         total_commission = total * (commission / 100)
