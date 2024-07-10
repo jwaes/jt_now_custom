@@ -8,7 +8,7 @@ import re
 _logger = logging.getLogger(__name__)
 
 class RoyaltyReport(models.TransientModel):
-    _name = 'jt.now.wizard.royalty'
+    _name = 'jt.now.wizard.royalty.report'
     _description = "Royalty wizard"
 
     period = fields.Selection([

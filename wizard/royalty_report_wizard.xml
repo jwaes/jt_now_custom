@@ -3,7 +3,7 @@
   <data>
     <record id="royalty_report_form_view" model="ir.ui.view">
       <field name="name">jt.now.wizard.royalty.form.view</field>
-      <field name="model">jt.now.wizard.royalty</field>
+      <field name="model">jt.now.wizard.royalty.report</field>
       <field name="arch" type="xml">
         <form string="PDF Report">
           <group>
@@ -27,7 +27,7 @@
 
     <record id="now_royalty_report" model="ir.actions.act_window">
       <field name="name">Royalties PDF Report</field>
-      <field name="res_model">jt.now.wizard.royalty</field>
+      <field name="res_model">jt.now.wizard.royalty.report</field>
       <field name="view_mode">form</field>
       <field name="target">new</field>
     </record>
