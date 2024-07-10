@@ -1,4 +1,5 @@
 import logging
+import json
 from odoo import models, fields, api
 from dateutil.relativedelta import relativedelta
 from odoo.tools import date_utils
@@ -15,6 +16,8 @@ class RoyaltyReportPDF(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         _logger.info('_get_report_values ...')
+        _loger.info('docids ', str(docids))
+        _logger.info(json.dumps(data))
         domain = [
             ('parent_state', '=', 'posted'),
             ('move_id.move_type', '=', 'in_invoice'),
@@ -26,6 +29,8 @@ class RoyaltyReportPDF(models.AbstractModel):
             domain.append(('date', '<=', data.get('date_to')))
         # if data.get('course_ids'):
         #     domain.append(('id', 'in', data.get('course_ids')))
+        
+        _logger.info(data.get('royalty_value_id'))
 
         royalty_value_id = self.env['jt.property.value'].browse(data.get('royalty_value_id'))
         _logger.info('royalty_value_id is ', royalty_value_id)
