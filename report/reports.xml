@@ -21,7 +21,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">jt_now_custom.royalty_report_pdf</field>
         <field name="report_file">jt_now_custom.royalty_report_pdf</field>
-        <field name="binding_model_id">account.model_account_move_line</field>
+        <field name="binding_model_id" ref="model_account_move_line" />
         <!-- <field name="binding_model_id" eval="False"/> -->
         <field name="binding_type">report</field>
     </record>
