@@ -24,9 +24,10 @@
         </form>
       </field>
     </record>
+
     <record id="now_royalty_report" model="ir.actions.act_window">
       <field name="name">Royalties PDF Report</field>
-      <field name="res_model">jt.now.wizard.royalty.report</field>
+      <field name="res_model">jt.now.wizard.royalty</field>
       <field name="view_mode">form</field>
       <field name="target">new</field>
     </record>
