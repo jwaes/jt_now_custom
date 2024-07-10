@@ -2,8 +2,8 @@
 <odoo>
     <data>
 
-        <record id="action_now_royalty_report" model="ir.actions.report">
-            <field name="name">NOW Royalty report</field>
+        <!-- <record id="action_now_royalty_report_x" model="ir.actions.report">
+            <field name="name">NOW Royalty report x</field>
             <field name="model">jt.now.wizard.royalty.report</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">jt_now_custom.royalty_report_pdf</field>
@@ -11,7 +11,19 @@
             <field name="print_report_name">(object.report_name)</field>
             <field name="binding_model_id" eval="False"/>
             <field name="binding_type">report</field>
-        </record>        
-    </data>
+        </record>         -->
+
+    
+
+    <record id="royalty_details_report" model="ir.actions.report">
+        <field name="name">NOW Royalty Details</field>
+        <field name="model">account.move.line</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jt_now_custom.royalty_report_pdf</field>
+        <field name="binding_model_id">account.model_account_move_line</field>
+        <!-- <field name="binding_model_id" eval="False"/> -->
+        <field name="binding_type">report</field>
+    </record>
+</data>
     
 </odoo>

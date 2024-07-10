@@ -8,8 +8,8 @@ import re
 _logger = logging.getLogger(__name__)
 
 class RoyaltyReport(models.TransientModel):
-    _name = 'jt.now.wizard.royalty.report'
-    _description = "Royalty report"
+    _name = 'jt.now.wizard.royalty'
+    _description = "Royalty wizard"
 
     period = fields.Selection([
         ('this_month', 'This month'),
@@ -59,7 +59,7 @@ class RoyaltyReport(models.TransientModel):
         self.ensure_one()
         _logger.info('action_print_report ...')
         data = self._prepare_report_data()
-        return self.env.ref('jt_now_custom.action_now_royalty_report').report_action(None, data=data)
+        return self.env.ref('jt_now_custom.royalty_details_report').report_action([], data=data)
 
     # # Generate xlsx report
     # def action_generate_xlsx_report(self):
