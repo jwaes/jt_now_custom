@@ -19,7 +19,6 @@
      </group>
      <footer>
       <button class="btn-primary" name="action_print_report" string="Print" type="object"/>
-      <button class="btn-primary" name="action_generate_xlsx_report" string="Generate xlsx" type="object"/>
       <button class="btn-secondary" special="cancel" string="Cancel"/>
      </footer>
     </form></field>
@@ -30,6 +29,6 @@
    <field name="view_mode">form</field>
    <field name="target">new</field>
   </record>
-  <menuitem action="now_royalty_report" id="menu_action_account_report_royalties" name="Royalties 2" parent="account.account_reports_management_menu"/>
+  <menuitem action="now_royalty_report" id="menu_action_account_report_royalties" name="Royalties" parent="account.account_reports_management_menu"/>
  </data>
 </odoo>

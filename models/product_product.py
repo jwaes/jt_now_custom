@@ -36,7 +36,9 @@ class ProductProduct(models.Model):
         # _logger.info("related ids %s ", related_ids)                
         # self.royalty_value_ids.ids = related_ids
         for record in self:
+            _logger.info('record.all_kvs ', len(record.all_kvs))
             record.royalty_kv_ids = record.all_kvs.filtered(lambda kv: kv.code == self.ROYALTY_CODE)
+            _logger.info('record.royalty_kv_ids ', len(record.royalty_kv_ids))
         # pass
 
         

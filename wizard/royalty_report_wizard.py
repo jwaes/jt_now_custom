@@ -1,7 +1,11 @@
+import logging
 from odoo import models, fields, api
 from dateutil.relativedelta import relativedelta
 from odoo.tools import date_utils
 import re
+
+
+_logger = logging.getLogger(__name__)
 
 class RoyaltyReport(models.TransientModel):
     _name = 'jt.now.wizard.royalty.report'
@@ -82,9 +86,11 @@ class RoyaltyReportPDF(models.AbstractModel):
         #     domain.append(('id', 'in', data.get('course_ids')))
 
         royalty_value_id = self.env['jt.property.value'].browse(data.get('royalty_value_id'))
+        logger.info('royalty_value_id is ', royalty_value_id)
 
         # docs = self.env['account.move.line'].search(domain)
         lines = self.env['account.move.line'].search(domain).filtered(lambda line: royalty_value_id in line.product_id.royalty_kv_ids.value_id).sorted(key=lambda k: k.date and k.move_name)
+        logger.info('lines ', len(lines))
         total = sum(lines.mapped('price_subtotal'))
         commission = data.get('commission')
         total_commission = total * (commission / 100)
