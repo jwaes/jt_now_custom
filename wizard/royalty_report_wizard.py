@@ -47,6 +47,7 @@ class RoyaltyReport(models.TransientModel):
 
     # generate PDF report
     def action_print_report(self):
+        _logger.info('action_print_report ...')
         data = {
             'date_from': self.date_from,
             'date_to': self.date_to, 
@@ -72,6 +73,7 @@ class RoyaltyReportPDF(models.AbstractModel):
     _name = 'report.jt_now_custom.royalty_report_pdf_template'
     _description = "Royalty report PDF"
 
+    @api.model
     def _get_report_values(self, docids, data=None):
         domain = [
             ('parent_state', '=', 'posted'),

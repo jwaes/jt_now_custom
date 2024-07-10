@@ -91,7 +91,7 @@
                                     </td>
                                     <tr>
                                         <td colspan="5" />
-                                        <td class="text-end"><span t-out="commission" />%</td>
+                                        <td class="text-end"><span t-out="commission" /> %</td>
                                         <td class="text-end">
                                             <span t-out="total_commission"
                                                 t-options="{'widget': 'monetary', 'display_currency': currency_id}" />
