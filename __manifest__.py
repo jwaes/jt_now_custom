@@ -49,6 +49,7 @@
         "report/purchase_quotation_templates.xml",
         "report/purchase_order_templates.xml",
         "report/sale_report_templates.xml",
+        "report/reports.xml",
         "report/royalty_report_templates.xml",
         'wizard/royalty_report_wizard.xml',
         # 'views/coupon_views.xml',
