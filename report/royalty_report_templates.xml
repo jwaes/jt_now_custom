@@ -12,7 +12,7 @@
         report_type="qweb-pdf"
     />     -->
 
-    <template id="royalty_report_pdf_template">
+    <template id="royalty_report_pdf">
         <t t-call="web.html_container">
             <t t-call="web.internal_layout">
                 <div class="page">
