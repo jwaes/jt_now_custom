@@ -37,7 +37,12 @@ class RoyaltyReportPDF(models.AbstractModel):
         _logger.info(str(royalty_value_id.ids))
         # docs = self.env['account.move.line'].search(domain)
 
-        lines = self.env['account.move.line'].search(domain).filtered(lambda line: royalty_value_id in line.product_id.royalty_kv_ids.value_id).sorted(key=lambda k: k.date and k.move_name)
+        lines = self.env['account.move.line'].search(domain)
+        _logger.info('after query')
+        lines = lines.filtered(lambda line: royalty_value_id in line.product_id.royalty_kv_ids.value_id)
+        _logger.info('after filtered')
+        lines = lines.sorted(key=lambda k: k.date and k.move_name)
+        _logger.info('after sorted')
         _logger.info('lines ', str(len(lines)))
         total = sum(lines.mapped('price_subtotal'))
         commission = data.get('commission')
