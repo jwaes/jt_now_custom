@@ -9,11 +9,12 @@ _logger = logging.getLogger(__name__)
 
 
 class RoyaltyReportPDF(models.AbstractModel):
-    _name = 'report.jt_now_custom.royalty_report_pdf'
-    _description = "Royalty report PDF"
+    _name = 'report.jt_now_custom.royalty_report_view'
+    _description = "Royalty report PDF abs"
 
     @api.model
     def _get_report_values(self, docids, data=None):
+        _logger.info('_get_report_values ...')
         domain = [
             ('parent_state', '=', 'posted'),
             ('move_id.move_type', '=', 'in_invoice'),
