@@ -30,10 +30,11 @@ class RoyaltyReportPDF(models.AbstractModel):
         # if data.get('course_ids'):
         #     domain.append(('id', 'in', data.get('course_ids')))
         
-        _logger.info(data.get('royalty_value_id'))
-
+        _logger.info('value id ', data.get('royalty_value_id'))
+        _logger.info('before')
         royalty_value_id = self.env['jt.property.value'].browse(data.get('royalty_value_id'))
-        _logger.info('royalty_value_id is ', royalty_value_id)
+        _logger.info('after')
+        _logger.info('royalty_value_id is ', str(royalty_value_id))
 
         # docs = self.env['account.move.line'].search(domain)
         lines = self.env['account.move.line'].search(domain).filtered(lambda line: royalty_value_id in line.product_id.royalty_kv_ids.value_id).sorted(key=lambda k: k.date and k.move_name)
