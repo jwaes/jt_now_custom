@@ -16,7 +16,7 @@ class RoyaltyReportPDF(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         _logger.info('_get_report_values ...')
-        _loger.info('docids ', str(docids))
+        _logger.info('docids ', str(docids))
         _logger.info(json.dumps(data))
         domain = [
             ('parent_state', '=', 'posted'),
