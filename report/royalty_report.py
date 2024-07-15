@@ -21,7 +21,7 @@ class RoyaltyReportPDF(models.AbstractModel):
         domain = [
             ('parent_state', '=', 'posted'),
             ('move_id.move_type', '=', 'in_invoice'),
-            ('display_type', '=', False)
+            ('display_type', '=', 'product')
         ]
         if data.get('date_from'):
             domain.append(('date', '>=', data.get('date_from')))
