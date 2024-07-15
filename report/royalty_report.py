@@ -36,7 +36,7 @@ class RoyaltyReportPDF(models.AbstractModel):
         _logger.info('after')
         _logger.info(str(royalty_value_id.ids))
         # docs = self.env['account.move.line'].search(domain)
-
+        _logger.info('domain is %s ', json.dumps(domain))
         lines = self.env['account.move.line'].search(domain)
         _logger.info('after query')
         _logger.info('lines %s ', len(lines))
