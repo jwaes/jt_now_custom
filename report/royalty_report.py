@@ -39,8 +39,10 @@ class RoyaltyReportPDF(models.AbstractModel):
 
         lines = self.env['account.move.line'].search(domain)
         _logger.info('after query')
+        _logger.info('lines %s ', len(lines))
         lines = lines.filtered(lambda line: royalty_value_id in line.product_id.royalty_kv_ids.value_id)
         _logger.info('after filtered')
+        _logger.info('lines %s ', len(lines))
         lines = lines.sorted(key=lambda k: k.date and k.move_name)
         _logger.info('after sorted')
         _logger.info('lines %s ', len(lines))
