@@ -91,17 +91,26 @@
                     </div>
                 </t>
                 <t t-elif="stockprod.is_stock_product">
-                    <span class="bubble mx-0 bubble_on_stock" title="on stock" modifiers="{}"></span>
-                    on stock, ships in 
-                    <t t-out="stockprod.lead_time_in_stock" />
+                    <t t-call="stock_bubble_onstock"/>
                 </t>
             </t>
             <t t-else="">
-                <span class="bubble mx-0 bubble_out_stock" title="out of stock" modifiers="{}"></span>
-                ships in 
-                <t t-out="stockprod.lead_time_out_stock" />
+                    <t t-call="stock_bubble_outofstock"/>
             </t>
         </div>   
+    </template>
+
+    <template id="stock_bubble_onstock">
+        <span class="bubble mx-0 bubble_on_stock" title="on stock" modifiers="{}"></span>
+                    on stock, ships in 
+                    <t t-out="stockprod.lead_time_in_stock" />
+        
+    </template>
+
+    <template id="stock_bubble_outofstock" >
+        <span class="bubble mx-0 bubble_out_stock" title="out of stock" modifiers="{}"></span>
+        ships in 
+        <t t-out="stockprod.lead_time_out_stock" />
     </template>
 
     <template id="personalized">
