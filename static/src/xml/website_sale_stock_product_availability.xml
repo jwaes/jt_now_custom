@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
     <t t-inherit="website_sale_stock.product_availability" t-inherit-mode="extension">
-        <!-- <xpath expr="//div[@id='out_of_stock_message']" position="inside">
-            <t t-else=''>Made especially for you, ships in 8 weeks.</t>
+        <xpath expr="//div[@id='out_of_stock_message']" position="inside">
+            <t t-else=''>
+                <span class="bubble mx-0 bubble_out_stock" title="out of stock" modifiers="{}"></span>
+                ships in <t t-out="lead_time_out_stock" />
+            </t>
         </xpath>
-        -->
         <xpath expr="//div[@id='threshold_message']" position="after">
-            <div id="now_stock_message">
-                <t t-if="stockprod.is_stock_product">
-                    <t t-call="stock_bubble_onstock"/>
-                </t>
-                <t t-else="">
-                    <t t-call="stock_bubble_outofstock"/>
-                </t>                
+            <div id="on_stock_lead_time" t-if="free_qty gte 0">
+                <span class="bubble mx-0 bubble_on_stock" title="on stock" modifiers="{}"></span> on
+                stock, ships in <t t-out="lead_time_in_stock" />
             </div>
         </xpath>
     </t>
