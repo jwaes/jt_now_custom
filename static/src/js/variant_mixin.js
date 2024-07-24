@@ -1,8 +1,8 @@
 /** @odoo-module **/
 
 import VariantMixin from "@website_sale/js/variant_mixin";
+import publicWidget from "@web/legacy/js/public/public_widget";
 
-const originalOnChangeCombination = VariantMixin._onChangeCombination;
 VariantMixin._onChangeCombinationStockInfo = function (ev, $parent, combination) {
 
     let product_id = 0;
@@ -21,7 +21,18 @@ VariantMixin._onChangeCombinationStockInfo = function (ev, $parent, combination)
     }
 
     $('div.product_stockinfo').html(combination.product_stockinfo).show();
-    originalOnChangeCombination.apply(this, [ev, $parent, combination]);    
+
 };
+
+publicWidget.registry.WebsiteSale.include({
+    /**
+     * Adds the vat to the regular _onChangeCombination method
+     * @override
+     */
+    _onChangeCombination: function () {
+        this._super.apply(this, arguments);
+        VariantMixin._onChangeCombinationStockInfo.apply(this, arguments);
+    },
+});
 
 export default VariantMixin;
