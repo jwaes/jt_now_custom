@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
     <t t-name="jt_now_custom.product_availability" t-inherit="website_sale_stock.product_availability" t-inherit-mode="extension">
+        <xpath expr="//div[first()]" position="attributes">
+            <attribute name="t-attf-class" separator=" " add="availability_message_#{product_template_id}" remove="availability_message_#{product_template}"/>
+        </xpath>
         <xpath expr="//div[@id='out_of_stock_message']/t[last()]" position="after">
-            <div t-else='' t-attf-class="availability_message_#{product_template_id}">
                 <span class="bubble mx-0 bubble_out_stock" title="out of stock" modifiers="{}"></span>
                 ships in <t t-out="lead_time_out_stock" />
-            </div>
         </xpath>
         <xpath expr="//div[@id='threshold_message']" position="after">
             <div t-attf-class="availability_message_#{product_template_id}" t-if="free_qty gte 0">
