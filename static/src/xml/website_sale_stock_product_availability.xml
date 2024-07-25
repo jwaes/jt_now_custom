@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
     <t t-name="jt_now_custom.product_availability" t-inherit="website_sale_stock.product_availability" t-inherit-mode="extension">
-        <xpath expr="//div[first()]" position="attributes">
+        <xpath expr="//div[1]" position="attributes">
             <attribute name="t-attf-class" separator=" " add="availability_message_#{product_template_id}" remove="availability_message_#{product_template}"/>
         </xpath>
         <xpath expr="//div[@id='out_of_stock_message']/t[last()]" position="after">
