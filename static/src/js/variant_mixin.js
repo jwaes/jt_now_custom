@@ -39,6 +39,12 @@ publicWidget.registry.WebsiteSale.include({
      * @override
      */
     _onChangeCombination: function () {
+        combination = arguments[1]
+        console.log('combi')
+        console.log(combination)
+        $('.oe_website_sale')
+        .find('.availability_message_' + combination.product_template_id)
+        .remove();
         this._super.apply(this, arguments);
         VariantMixin._onChangeCombinationStockInfo.apply(this, arguments);
     },
