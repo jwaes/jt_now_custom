@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-    <t t-inherit="website_sale_stock.product_availability" t-inherit-mode="extension">
+    <t t-inherit="website_sale_stock.product_availability" t-inherit-mode="primary">
         <xpath expr="//div[@id='out_of_stock_message']" position="inside">
             <t t-else=''>
                 <span class="bubble mx-0 bubble_out_stock" title="out of stock" modifiers="{}"></span>
