@@ -22,6 +22,15 @@ VariantMixin._onChangeCombinationStockInfo = function (ev, $parent, combination)
 
     $('div.product_stockinfo').html(combination.product_stockinfo).show();
 
+    const $pipo = $('.oe_website_sale')
+        .find('.availability_message_' + combination.product_template)
+    console.log('pipo')
+    console.log($pipo)
+    const $pipo2 = $('.oe_website_sale')
+        .find('.availability_message_' + combination.product_template_id)   
+    console.log('$pipo2')
+    console.log($pipo2)     
+
 };
 
 publicWidget.registry.WebsiteSale.include({
