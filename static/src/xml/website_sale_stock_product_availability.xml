@@ -9,9 +9,9 @@
                 ships in <t t-out="lead_time_out_stock" />
         </xpath>
         <xpath expr="//div[@id='threshold_message']" position="after">
-            <div t-attf-class="availability_message_#{product_template_id}" t-if="free_qty gte 0">
+            <div t-attf-class="availability_message_#{product_template_id}" t-if="free_qty gte 0.0">
                 <span class="bubble mx-0 bubble_on_stock" title="on stock" modifiers="{}"></span> on
-                stock, ships in <t t-out="lead_time_in_stock" />
+                stock, ships in <t t-out="lead_time_in_stock" /> (<t t-out="free_qty"/>)
             </div>
         </xpath>
     </t>
