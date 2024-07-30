@@ -67,10 +67,11 @@
     <template id="products_item" inherit_id="website_sale.products_item">
 
         <xpath expr="//form/div/a[hasclass('d-block')]/span" position="attributes">
-            <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute>
+            <!-- <attribute name="t-options">{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image'}</attribute> -->
+            <attribute name="t-options" >{'widget': 'image', 'preview_image': 'image_portrait', 'itemprop': 'image', 'class': 'h-100 w-100 position-absolute'}</attribute>
         </xpath>
 
-        <xpath expr="//div[hasclass('o_wsale_product_information_text')]" position="after">
+        <xpath expr="//div[hasclass('o_wsale_product_information')]" position="inside">
             <t t-call="jt_now_custom.stock_bubble">
                 <t t-set="stockprod" t-value="product.product_variant_id"/>
                 <t t-set="show_pickup">False</t>
