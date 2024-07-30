@@ -84,7 +84,7 @@
     <template id="stock_bubble">
         <!-- <t t-set="stockprod" t-value="product_variant"/>
         <t t-if="not stockprod" t-set="stockprod"  t-value="product.product_variant_id" /> -->
-        <div class="stock_info px-2" t-if="not stockprod.is_custom_made_product">
+        <div class="stock_info" t-if="not stockprod.is_custom_made_product">
             <t t-if="stockprod.sudo().free_qty &gt; 0">
                 <t t-if="stockprod.is_pickup_product and show_pickup">
                     <div class="mt-2 product_pickup" role="alert">
