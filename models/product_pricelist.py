@@ -14,3 +14,4 @@ class Pricelist(models.Model):
         _logger.info("_get_applicable_rules_domain")
         _logger.info(json.dumps(res), sort_keys=True, default=str)
         return res
+        
