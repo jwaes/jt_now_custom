@@ -14,3 +14,10 @@ class Pricelist(models.Model):
         _logger.info("_get_applicable_rules_domain")
         _logger.info(json.dumps(res, sort_keys=True, default=str))
         return res
+
+
+    def _get_products_price(self, products, *args, **kwargs):
+        res = super()._get_products_price(products, *args, **kwargs)
+        _logger.info("_get_products_price")
+        _logger.info(json.dumps(res, sort_keys=True, default=str))
+        return res
