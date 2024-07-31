@@ -18,7 +18,7 @@ class Pricelist(models.Model):
 
     def _get_products_price(self, products, *args, **kwargs):
         _logger.info("_get_products_price # %s", str(len(products)))
-        products = products + products.filtered(lambda r: r._name == 'product.template').product_variant_id 
+        products = products.filtered(lambda r: r._name == 'product.template').product_variant_id 
         _logger.info("_get_products_price # %s", str(len(products)))
         res = super()._get_products_price(products, *args, **kwargs)
         _logger.info("_get_products_price")
