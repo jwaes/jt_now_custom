@@ -1,6 +1,7 @@
 import logging
 import json
 from odoo import api, fields, models
+from odoo.tools import float_compare
 
 
 _logger = logging.getLogger(__name__)
@@ -121,4 +122,10 @@ class ProductTemplate(models.Model):
             r = res[record.id]
             _logger.info('record name: %s', record.name)
             _logger.info(json.dumps(r))
+            if(record._name == 'product.template' and float_compare(r['price_reduce'], 0.0) == 0):
+                _logger.info('is template')
+                r = res[record.product_variant_id.d]
+                _logger.info(json.dumps(r))
+
+
         return res
