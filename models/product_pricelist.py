@@ -17,10 +17,15 @@ class Pricelist(models.Model):
 
 
     def _get_products_price(self, products, *args, **kwargs):
-        _logger.info("_get_products_price # %s", str(len(products)))
-        products = products.filtered(lambda r: r._name == 'product.template').product_variant_id 
-        _logger.info("_get_products_price # %s", str(len(products)))
         res = super()._get_products_price(products, *args, **kwargs)
-        _logger.info("_get_products_price")
+        
+        variants = products.filtered(lambda r: r._name == 'product.template').product_variant_id
+        if variants:
+            variant_res = super()._get_products_price(variants, *args, **kwargs)
+            for record in self:
+                for tmpl in res[record.id]:
+                    res[record.id] = variant_res[record.product_variant_id.id]
+        
         _logger.info(json.dumps(res, sort_keys=True, default=str))
+
         return res
