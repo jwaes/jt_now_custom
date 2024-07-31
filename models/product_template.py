@@ -115,7 +115,7 @@ class ProductTemplate(models.Model):
 
     def _get_sales_prices(self, pricelist, fiscal_position):
         res = super()._get_sales_prices(pricelist, fiscal_position)
-        __logger.info('_get_sales_prices')
+        _logger.info('_get_sales_prices')
         for k, v in res:
-            __logger.info("[%s] : %s", str(k), str(v))
+            _logger.info("[%s] : %s", str(k), str(v))
         return res
