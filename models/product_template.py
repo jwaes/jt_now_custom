@@ -1,5 +1,8 @@
+import logging
 from odoo import api, fields, models
 
+
+_logger = logging.getLogger(__name__)
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
@@ -108,3 +111,11 @@ class ProductTemplate(models.Model):
         else:
             return super()._get_possible_combinations(parent_combination)
 
+
+
+    def _get_sales_prices(self, pricelist, fiscal_position):
+        res = super()._get_sales_prices(pricelist, fiscal_position)
+        __logger.info('_get_sales_prices')
+        for k, v in res:
+            __logger.info("[%s] : %s", str(k), str(v))
+        return res
