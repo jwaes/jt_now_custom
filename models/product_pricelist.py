@@ -12,5 +12,5 @@ class Pricelist(models.Model):
     def _get_applicable_rules_domain(self, products, date, **kwargs):
         res = super()._get_applicable_rules_domain(products, date, **kwargs)
         _logger.info("_get_applicable_rules_domain")
-        _logger.info(json.dumps(res))
+        _logger.info(json.dumps(res), sort_keys=True, default=str)
         return res
