@@ -1,4 +1,5 @@
 import logging
+import json
 from odoo import api, fields, models
 
 
@@ -119,6 +120,5 @@ class ProductTemplate(models.Model):
             _logger.info('_get_sales_prices %s (%s) (%s)', record.name, pricelist.name, fiscal_position.name)   
             r = res[record.id]
             _logger.info('record name: %s', record.name)
-            for k, v in r:
-                _logger.info("[%s] : %s", str(k), str(v))
+            _logger.info(json.dumps(r))
         return res
