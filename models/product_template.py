@@ -135,10 +135,10 @@ class ProductTemplate(models.Model):
                 combination_info = template._get_combination_info(product_id=template.product_variant_id.id)
                 _logger.info(json.dumps(combination_info, sort_keys=True, default=str))
                 template_price_vals = {
-                    'price_reduce': combination_info['compare_list_price'],
+                    'price_reduce': combination_info['price'],
                 }
-                if combination_info['price']:
-                    template_price_vals['base_price'] = combination_info['price']
+                if combination_info['compare_list_price']:
+                    template_price_vals['base_price'] = combination_info['compare_list_price']
 
                 res[template.id] = template_price_vals       
 
