@@ -20,12 +20,12 @@ class Pricelist(models.Model):
         res = super()._get_products_price(products, *args, **kwargs)
         _logger.info("_get_products_price")
         _logger.info(json.dumps(res, sort_keys=True, default=str))
-        variants = products.filtered(lambda r: r._name == 'product.template').product_variant_id
-        if variants:
-            variant_res = super()._get_products_price(variants, *args, **kwargs)
-            for record in res:
-                res[record.id] = variant_res[record.product_variant_id.id]
-        _logger.info("aftger")
-        _logger.info(json.dumps(res, sort_keys=True, default=str))
+        # variants = products.filtered(lambda r: r._name == 'product.template').product_variant_id
+        # if variants:
+        #     variant_res = super()._get_products_price(variants, *args, **kwargs)
+        #     for record in res:
+        #         res[record.id] = variant_res[record.product_variant_id.id]
+        # _logger.info("aftger")
+        # _logger.info(json.dumps(res, sort_keys=True, default=str))
 
         return res
