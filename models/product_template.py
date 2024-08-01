@@ -117,23 +117,10 @@ class ProductTemplate(models.Model):
 
     def _get_sales_prices(self, pricelist, fiscal_position):
         res = super()._get_sales_prices(pricelist, fiscal_position)
-        _logger.info("_get_sales_prices")
-        _logger.info(json.dumps(res, sort_keys=True, default=str))
-        # for record in self:
-        #     _logger.info('_get_sales_prices %s (%s) (%s)', record.name, pricelist.name, fiscal_position.name)   
-        #     r = res[record.id]
-        #     _logger.info('record name: %s', record.name)
-        #     _logger.info(json.dumps(r))
-        #     if(record._name == 'product.template' and float_compare(r['price_reduce'], 0.0) == 0):
-        #         _logger.info('is template')
-        #         r = res[record.product_variant_id.id]
-        #         _logger.info(json.dumps(r))
 
         for template in self:
             if template.product_variant_id:
-                _logger.info("template.product_variant_id %s", str(template.product_variant_id.id))
                 combination_info = template._get_combination_info(product_id=template.product_variant_id.id)
-                _logger.info(json.dumps(combination_info, sort_keys=True, default=str))
                 template_price_vals = {
                     'price_reduce': combination_info['price'],
                 }
@@ -141,6 +128,5 @@ class ProductTemplate(models.Model):
                     template_price_vals['base_price'] = combination_info['compare_list_price']
 
                 res[template.id] = template_price_vals       
-
 
         return res
