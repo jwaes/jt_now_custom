@@ -123,6 +123,13 @@
             <a href="/faq#Personalized-products">Read more</a>
         </div>           
     </template>
+
+
+    <template id="filmstrip_categories" inherit_id="website_sale.filmstrip_categories">
+        <xpath expr="//li" position="attributes">
+            <attribute name="t-if">not c.hidden</attribute>
+        </xpath>
+    </template>    
 <!-- 
     <template id="products_categories_top" inherit_id="website_sale.products" active="False" customize_show="True" name="eCommerce Categories Top">
         <xpath expr="//div[hasclass('o_wsale_products_grid_table_wrapper')]" position="before">
