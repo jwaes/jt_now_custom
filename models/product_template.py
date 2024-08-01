@@ -130,8 +130,8 @@ class ProductTemplate(models.Model):
         #         _logger.info(json.dumps(r))
 
         for template in self:
-            combination_info = template._get_combination_info(product_id=template.product_variant_id)
-
+            combination_info = template._get_combination_info(product_id=template.product_variant_id.id)
+            _logger.info(json.dumps(combination_info, sort_keys=True, default=str))
             template_price_vals = {
                 'price_reduce': combination_info['compare_list_price'],
             }
