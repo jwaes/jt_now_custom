@@ -18,3 +18,4 @@ def migrate(cr, version):
 
     util.remove_theme(cr, 'theme_now')
 
+    util.update_record_from_xml(cr, 'sale.mail_template_sale_confirmation' )
