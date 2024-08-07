@@ -46,7 +46,7 @@
 <t t-if="barcode">
 ^FO150,950^BY3
 ^BCN,100,Y,N,N
-^FD<t t-raw="barcode"/>^FS
+^FD<t t-out="barcode"/>^FS
 </t>
 
 <t t-call="jt_now_custom.zpl_now_footer"/>
