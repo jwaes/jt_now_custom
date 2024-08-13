@@ -6,7 +6,7 @@
             <attribute name="t-options" add="{'widget': 'date'}"/>
         </xpath>
         <xpath expr="//span[@t-field='line.date_planned']" position="after">
-            (week <span t-field="line.week_planned"/>)
+            <br/><span>(week <span t-field="line.week_planned"/>)</span>
         </xpath>
     </template>
 
