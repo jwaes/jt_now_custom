@@ -34,7 +34,7 @@
         </div>
     </template>
 
-    <template id="professional_recruitement_card" inherit_id="jt_product_properties_website.website_sale_product">
+    <!-- <template id="professional_recruitement_card" inherit_id="jt_product_properties_website.website_sale_product">
         <xpath expr="//div[hasclass('card')]" position="before">
             <t t-if="product.is_custom_made_product or product.is_dealer_product">
                 <div class="card bg-white" data-name="Item">
@@ -49,7 +49,7 @@
                 </div>
             </t>
         </xpath>
-    </template>    
+    </template>     -->
 
     <template id="jt_now_custom.product_quantity3"  inherit_id="website_sale.product_quantity">
         <!-- <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
