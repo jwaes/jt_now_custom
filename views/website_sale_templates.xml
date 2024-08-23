@@ -96,7 +96,7 @@
                 </t>
             </t>
             <t t-else="">
-                    <t t-call="stock_bubble_outofstock"/>
+                    <t t-call="jt_now_custom.stock_bubble_outofstock"/>
             </t>
         </div>   
     </template>

@@ -27,11 +27,20 @@ class CrmLeadTaskWizard(models.TransientModel):
             task.name = task_name
 
             # add chatter
-            body = 'Created from opportunity ' + task.lead_id.display_name
-            product.message_post(
-                body=body,
-                message_type='notification'
-            )
+            # body = 'Created from opportunity ' + task.lead_id.display_name
+            # product.message_post(
+            #     body=body,
+            #     message_type='notification'
+            # )
+
+            note_subtype_id = self.env['ir.model.data']._xmlid_to_res_id(
+                'mail.mt_note')
+
+            product.message_post_with_source(
+                'mail.message_origin_link',
+                render_values={'self': product, 'origin': task.lead_id},
+                subtype_id=note_subtype_id,
+            )            
 
         else:
             _logger.info("no otf bom template")
