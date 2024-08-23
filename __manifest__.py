@@ -23,6 +23,7 @@
         # 'coupon',
         'documents',
         # 'sale_coupon',
+        'web',
         'web_editor',
         'website_sale',
         'website_sale_stock',

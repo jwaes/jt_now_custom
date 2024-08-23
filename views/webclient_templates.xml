@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="favicon" inherit_id="web.layout">
+    <!-- <template id="favicon" inherit_id="web.layout">
         <xpath expr="//link[@type='image/x-icon']" position="attributes">
             <attribute name="t-att-href" value="/jt_now_custom/static/img/favicon.ico"/>
             <attribute name="href" value="/jt_now_custom/static/img/favicon.ico"/>            
         </xpath>
-    </template>
+    </template> -->
 
 </odoo>
