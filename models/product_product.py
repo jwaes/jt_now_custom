@@ -175,7 +175,7 @@ class ProductProduct(models.Model):
     )   
 
     @api.model
-    def _set_cost_from_vendor_price():
+    def _set_cost_from_vendor_price(self):
         for product in self:
             _logger.info("PROD %s", product)
             if product.bom_ids or product.variant_bom_ids:
