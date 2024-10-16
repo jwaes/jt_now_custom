@@ -173,3 +173,14 @@ class ProductProduct(models.Model):
     product_packaging_weight = fields.Float(
         related="product_tmpl_id.product_packaging_weight", readonly=True
     )   
+
+    @api.model
+    def _set_cost_from_vendor_price():
+        for product in self:
+            _logger.info("PROD %s", product)
+            if product.bom_ids or product.variant_bom_ids:
+                _logger.info("BOM product")
+            else:
+                supplier = product._select_seller(uom_id=product.uom_id)
+                if supplier:
+                    product.standard_price = supplier.price
