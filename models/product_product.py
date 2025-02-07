@@ -10,7 +10,7 @@ class ProductProduct(models.Model):
     ROYALTY_CODE = 'internal.royalty'
 
     _inherit = "product.product"
-    _order = 'websequence, priority desc, default_code, name, id'
+    _order = 'websequence, is_favorite desc, default_code, name, id'
     
     websequence = fields.Integer('Web sequence', default=1, help='Give extra order for website variants')
 
