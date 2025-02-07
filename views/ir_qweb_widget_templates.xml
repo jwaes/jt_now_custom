@@ -3,7 +3,7 @@
 
     <template id="contact" inherit_id="base.contact">
         <xpath expr="//address" position="attributes">
-            <attribute name="class" separator="," add="mb-3" remove="mb-0" value=""></attribute>
+            <attribute name="class" separator="," add="mb-3" remove="mb-0"/>
         </xpath>
     </template>
 
