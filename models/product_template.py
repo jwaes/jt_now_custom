@@ -23,6 +23,7 @@ class ProductTemplate(models.Model):
         help="UoM for width, depth, height",
         default=lambda self: self.env.ref("uom.product_uom_millimeter"),
     )
+    
     product_weight = fields.Float("weight")
     product_packaging_weight = fields.Float("packaging weight")
     weight_uom_id = fields.Many2one(
