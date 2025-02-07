@@ -28,7 +28,7 @@
         'website_sale',
         'website_sale_stock',
         'sale_management',
-        'sale_product_configurator',
+        # 'sale_product_configurator',
         'crm',
         'project',
         'purchase',
