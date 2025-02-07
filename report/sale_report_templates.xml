@@ -8,9 +8,9 @@
         <xpath expr="//div[@t-field='doc.partner_shipping_id']" position="attributes">
             <attribute name="class" separator=" " add="pb-0" />
         </xpath>
-        <xpath expr="//thead" position="attributes">
-            <attribute name="style" value=""></attribute>
-        </xpath>
+        <!-- <xpath expr="//thead" position="attributes">
+            <attribute name="style"></attribute>
+        </xpath> -->
     </template>
 
 </odoo>
