@@ -1,4 +1,4 @@
-import VariantMixin from "@website_sale/js/variant_mixin";
+import VariantMixin from "@website_sale/js/sale_variant_mixin";
 import publicWidget from "@web/legacy/js/public/public_widget";
 
 VariantMixin._onChangeCombinationStockInfoFixRemove = function (ev, $parent, combination) {
