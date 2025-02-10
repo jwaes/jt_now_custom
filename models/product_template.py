@@ -23,7 +23,7 @@ class ProductTemplate(models.Model):
         help="UoM for width, depth, height",
         default=lambda self: self.env.ref("uom.product_uom_millimeter"),
     )
-    
+
     product_weight = fields.Float("weight")
     product_packaging_weight = fields.Float("packaging weight")
     weight_uom_id = fields.Many2one(
@@ -116,8 +116,8 @@ class ProductTemplate(models.Model):
 
 
 
-    def _get_sales_prices(self, pricelist, fiscal_position):
-        res = super()._get_sales_prices(pricelist, fiscal_position)
+    def _get_sales_prices(self, website):
+        res = super()._get_sales_prices(website)
 
         for template in self:
             if template.product_variant_id:
