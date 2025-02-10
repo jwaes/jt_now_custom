@@ -13,6 +13,7 @@ def migrate(cr, version):
         'jt_account_sepa',
         'jt_invoice_cashdiscount',
         'jt_webeditor_extras',
+        'jt_documents_website',
         'mollie_shipment_sync',        
     ]
 
@@ -26,5 +27,4 @@ def migrate(cr, version):
     # # util.remove_view(cr, xml_id='jt_now_custom.shop_product_carousel_square')
 
     # util.remove_field(cr, 'mollie.payment.method.issuer', 'payment_icon_ids')
-    
 
