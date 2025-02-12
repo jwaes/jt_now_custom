@@ -22,6 +22,8 @@ def migrate(cr, version):
         util.uninstall_module(cr,candidate)
 
     util.remove_view(cr, xml_id='jt_now_custom.product_product_tree_view')
+    util.remove_view(cr, xml_id='jt_now_custom.crm_case_form_view_opportt')
+    util.remove_view(cr, xml_id='jt_now_custom.crm_case_kanban_view_leads')
 
     # util.remove_view(cr, xml_id='jt_now_custom.product_quantity')
     # # util.remove_view(cr, xml_id='jt_now_custom.shop_product_carousel_square')
