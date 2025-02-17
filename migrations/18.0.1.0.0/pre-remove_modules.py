@@ -14,7 +14,8 @@ def migrate(cr, version):
         'jt_invoice_cashdiscount',
         'jt_webeditor_extras',
         'jt_documents_website',
-        'mollie_shipment_sync',        
+        'mollie_shipment_sync',      
+        'jt_project_assign'  ,
     ]
 
     for candidate in modules_to_uninstall:
