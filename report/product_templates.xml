@@ -27,12 +27,12 @@
 
 
 <t t-if="price_included">
-^FO600,410,1
+^FO770,850,1
 <t t-if="currency_id.position == 'after'">
-^A0N,66,48^FH^FD<t t-esc="pricelist._get_product_price(product, 1, currency_id)" t-options='{"widget": "float", "precision": 2}'/><t t-esc="currency_id.name"/>^FS
+^A0N,66,48^FH^FD<t t-esc="pricelist._get_product_price(product, 1, currency_id)" t-options='{"widget": "float", "precision": 2}'/> <t t-esc="currency_id.name"/>^FS
 </t>
 <t t-if="currency_id.position == 'before'">
-^A0N,66,48^FH^FD<t t-esc="currency_id.name"/><t t-esc="pricelist._get_product_price(product, 1, currency_id)" t-options='{"widget": "float", "precision": 2}'/>^FS
+^A0N,66,48^FH^FD<t t-esc="currency_id.name"/> <t t-esc="pricelist._get_product_price(product, 1, currency_id)" t-options='{"widget": "float", "precision": 2}'/>^FS
 </t>
 </t>
 <t t-if="barcode">
